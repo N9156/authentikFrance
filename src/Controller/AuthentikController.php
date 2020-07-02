@@ -16,4 +16,14 @@ class AuthentikController extends AbstractController
             'controller_name' => 'AuthentikController',
         ]);
     }
+
+    /**
+     * @Route("/authentik/accueil"), name="accueil")
+     */
+
+    public function liste()
+    {
+        return $this->render('authentik/accueil.htlm.twig');
+    }
+
 }
