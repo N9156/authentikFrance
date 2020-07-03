@@ -84,9 +84,18 @@ class User
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SiteTouristique::class, mappedBy="user")
+     */
+    private $sitestouristiques;
+
+  
+    
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->sitestouristiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,4 +277,37 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection|SiteTouristique[]
+     */
+    public function getSitestouristiques(): Collection
+    {
+        return $this->sitestouristiques;
+    }
+
+    public function addSitestouristique(SiteTouristique $sitestouristique): self
+    {
+        if (!$this->sitestouristiques->contains($sitestouristique)) {
+            $this->sitestouristiques[] = $sitestouristique;
+            $sitestouristique->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSitestouristique(SiteTouristique $sitestouristique): self
+    {
+        if ($this->sitestouristiques->contains($sitestouristique)) {
+            $this->sitestouristiques->removeElement($sitestouristique);
+            // set the owning side to null (unless already changed)
+            if ($sitestouristique->getUser() === $this) {
+                $sitestouristique->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }
