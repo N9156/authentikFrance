@@ -74,6 +74,12 @@ class SiteTouristique
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="sitestouristiquescomment")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $comment;
+
     
     
 
@@ -210,6 +216,18 @@ class SiteTouristique
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comment $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }
