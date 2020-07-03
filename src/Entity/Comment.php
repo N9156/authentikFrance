@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SiteTouristique::class, mappedBy="comment")
+     */
+    private $sitestouristiquescomment;
+
+    public function __construct()
+    {
+        $this->sitestouristiquescomment = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,37 @@ class Comment
     public function setUsers(?User $users): self
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiteTouristique[]
+     */
+    public function getSitestouristiquescomment(): Collection
+    {
+        return $this->sitestouristiquescomment;
+    }
+
+    public function addSitestouristiquescomment(SiteTouristique $sitestouristiquescomment): self
+    {
+        if (!$this->sitestouristiquescomment->contains($sitestouristiquescomment)) {
+            $this->sitestouristiquescomment[] = $sitestouristiquescomment;
+            $sitestouristiquescomment->setComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSitestouristiquescomment(SiteTouristique $sitestouristiquescomment): self
+    {
+        if ($this->sitestouristiquescomment->contains($sitestouristiquescomment)) {
+            $this->sitestouristiquescomment->removeElement($sitestouristiquescomment);
+            // set the owning side to null (unless already changed)
+            if ($sitestouristiquescomment->getComment() === $this) {
+                $sitestouristiquescomment->setComment(null);
+            }
+        }
 
         return $this;
     }
