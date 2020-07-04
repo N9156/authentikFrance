@@ -1,3 +1,27 @@
 .mon conteneur{
     min-height: 85vh !important;
 }
+
+.img-responsive .centree {
+ margin: 0 auto;
+}
+
+p.image {
+    float: left;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+}
+
+p.image {
+    float: right;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+}
+
+.img-nuage{
+    width: 100% !important;
+}
+
+.bretagne{
+    width: 100% !important;
+}
