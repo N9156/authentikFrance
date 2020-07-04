@@ -1,5 +1,63 @@
+/*
+ 
+ * Designed and built with all the love in the world by a Super Team.
+ */
+
+
+ #logo img{
+    float:right;
+    margin-right:30px;
+    width:100px;
+   }
+
+   body {
+    font-family:'Roboto', sans-serif;
+    color: #000;
+    line-height:1.2em;
+    font-size:20px;
+    line-height:40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    margin: 10px;
+}
+
+p {
+    padding: 10px;
+    font-weight: 100;
+}
+
+.navbar {
+    background:lightgray !important;
+    margin-bottom:0;
+    min-height:70px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border: 1px solid #181A1C;
+    box-shadow: none;
+    font-size:15px;
+    font-weight: bold;
+    text-shadow: none;
+    color: black;
+}
+
+.logo img {
+    width:250px;
+    height:250px;
+    position: relative !important;
+    }
+
+.my-4{
+        text-align:left;
+    }
+
+/*---------------------*/
 .mon conteneur{
-    min-height: 85vh !important;
+    min-height: 95vh !important;
 }
 
 .img-responsive .centree {
@@ -13,8 +71,8 @@ p.image {
 }
 
 p.image {
-    float: right;
-    margin: 0 10px 0 0;
+    float: center;
+    margin: 0 30px 0 0;
     white-space: nowrap;
 }
 
@@ -22,6 +80,118 @@ p.image {
     width: 100% !important;
 }
 
-.bretagne{
-    width: 100% !important;
+img{
+    max-width:100% !important;
 }
+.ville{
+    width:50%;
+}
+figure{
+    min-width:150px;
+    float: right;
+    width:30%;
+    text-align:center;
+    font-style:italic;
+    font-size:smaller;
+    text-indent:0;
+    border:thin silver solid;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+img.scaled {
+    width:100%;
+}
+
+
+div#bloc1{
+    display: inline-block;
+        float: auto;
+        background: #789;
+        width:2000px;
+}
+
+div#bloc2{
+    background:#abc;
+}
+
+.bretagne{
+    max-width: 100% !important;
+}
+
+.carousel{
+    transition: border-color 1s ease !important;
+}
+#bloc_page
+{
+    width: 900px;
+    margin:auto;
+}
+
+
+/*Social icons - partie FOOTER
+************/
+ .social {
+    list-style: none;
+    float: none;
+    position:relative;
+    margin:5px; auto;
+}
+.social li {
+    display:inline-block;
+    line-height: 32px;
+    font-family:'Porta';
+    font-size: 32px;
+    padding:0 5px;
+}
+.social li a {
+    margin:0;
+    padding:0;
+    width:32px;
+    height:32px;
+    color: #FECE1A;
+}
+.social li a:hover {
+    color:#181A1C;
+}
+/*
+
+Sections 
+***************************************************************************/
+.section {
+    padding-bottom: 50px;
+}
+.section .container {
+    padding-top:50px;
+}
+.section .title {
+    text-align: center;
+    padding:10px;
+    margin-bottom: 30px;
+}
+.section .title h1 {
+    font-weight: normal;
+    margin-bottom: 20px;
+    padding: 0;
+}
+.section .title > p {
+    font-size: 20px;
+    color: #FFF;
+    font-weight: lighter;
+}
+
+/*Responsible
+********************************************************************/
+ @media (min-width: 1200px) {
+    body {
+        padding-left:0;
+        padding-right:0;
+    }
+}
+    .navbar .nav > li > a {
+        line-height: 20px;
+        vertical-align: middle;
+    }
+    .section {
+        padding-left:20px;
+        padding-right:20px;
+    }
