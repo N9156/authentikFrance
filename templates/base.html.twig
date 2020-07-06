@@ -11,6 +11,8 @@
          <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
          <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
                
     
             <!--[if IE 7]>
@@ -27,43 +29,52 @@
     
         {% endblock %}
     </head>
-
-    
     <body>
         <header>    
             <!-- PETITE NAVBAR -->
             <!-- As a heading -->
-            <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1"><strong>Région Bretagne 🐟</strong></span>
-            </nav>
+
+    <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1"><strong>Région Bretagne 🐟</strong></span>
+            <div class="topnav" id="myTopnav">
+                <a href="#home" class="active">Liste des partenaires /</a>
+                <strong><a href="#news">Professionnels: s'enregistrer /</a></strong>
+                <a href="#contact">Inscription particulier/</a>
+                <strong> <a href="#about">Sign in /</a></strong>
+                    <strong><a href="#about">Sign out</a></strong>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+                     
+    </nav>
+            <!-- End main navigation -->
         </header>
         
-        <div class="row">
-            <div class="container">
-                
-        
-                <img src="{{ asset('image/LOGO_projetco.PNG') }}" width="450" height="450" alt="Logo" class="img-responsive center-block md-col-4 float-left">
-                <!-- authentikFrance logo -->
+            <div class="row">
+                <div class="container">
+                    <img src="{{ asset('image/LOGO_projetco.PNG') }}" width="450" height="450" alt="Logo" class="img-responsive center-block md-col-4 float-left">
+                    <!-- authentikFrance logo -->
 
-                <img src="{{ asset('image/bretagne26.JPG') }}" alt="#" class="img-responsive align-block md-col-6 float-right" width="450" height="400">
+                    <img src="{{ asset('image/bretagne26.JPG') }}" alt="#" class="img-responsive align-block md-col-6 float-right" width="450" height="400">
 
+                </div>
             </div>
-        </div>
-    </br>
+            </br>
             <div id="bloc1" class="my-8">       
                  <center><h1>authentikFrance: la solidarité pour nos régions !</h1></center>
                     <br/>
               <div class="container"> 
-                       
-                    <div class="col-md 2 text-align">
-                        
-                        <figure>
+                 
 
-                 <img class=scaled src="image/maire_stmalo.jpg" alt="Gilles Lurton" /><figcaptation>Maire de Saint-Malo (LR)
-                <img class=scaled src="image/president_region2.png" alt="Loïc Chesnais-Girard" /><figcaptation> Président Région Bretagne 
-                         
-                </figure>
-                        </div>
+                <div class="col-md 2 text-align">
+                        
+                    <figure>
+                        <img class=scaled src="image/maire_stmalo.jpg" alt="Gilles Lurton" /><figcaptation>Maire de Saint-Malo (LR)
+                        <img class=scaled src="image/president_region2.png" alt="Loïc Chesnais-Girard" /><figcaptation> Président Région Bretagne  
+                    </figure>
+                </div>
+
 
                     <div id="bloc2"> <p>"Avec notre plateforme développée par une équipe d'élève de l'école Webforce3, la ville de Saint-Malo ainsi que la Région Bretagne, souhaitent donner
                         la possibilité d'avoir sa ville et sa région à portée de main. 
@@ -318,8 +329,9 @@
                 <p>Plages, monuments remarquables, grandes marées, venez visiter Saint-Malo au gré des saisons.</p>
                 <p> Saint Malo a inspiré de grands hommes, de nombreux écrivains et peintres, séduits par la beauté de son littoral et par son histoire</p>
                 <p>La ville fut également le théâtre de grandes histoires maritimes. Elle a vu passer d'illustres navigateurs qui dès le XVème siècle, partirent explorer les continents à la recherche de terre inconnues.</p>
-                <p>Située entre le Fort National et jusqu'à la pointe de Rochebonne, La Grande Plage du Sillon est une plage de 3 km de sable blanc. Cette 
-                    plage offre une magifique promenade par la digue et de nombreuses activités nautiques : char à voile, catamaran...</p>
+
+                <p>Située entre le Fort National et jusqu'à la pointe de Rochebonne, La Grande Plage du Sillon est une plage de 3 km de sable blanc. Cette plage offre une magifique promenade par la digue et de nombreuses activités nautiques : char à voile, catamaran...</p>
+
                 </p>                
                     <img src="image/saint_malo.jpg" class="ville"/>
 
@@ -333,79 +345,111 @@
              </div>
  
              <!-- widget meteo -->
-<div id="widget_meteo" class=" mx-auto">
-    
-            <span id="l_meteo"><a href="http://www.mymeteo.info/r/saint-malo_ia">France, Saint-Malo d&eacute;tails m&eacute;t&eacute;o du jour</a></span>
-            <script type="text/javascript">
-                (function() {
-                var my = document.createElement("script"); my.type = "text/javascript"; my.async = true;
-                my.src = "https://services.my-meteo.com/widget/js_design?ville=13644&format=horizontal&nb_jours=5&coins&ombre1=000000&c1=ffffff&c2=a9a9a9&c3=ffffff&c4=ffffff&c5=ffffff&police=4&t_icones=2&fond=6&masque=3&x=784&y=150&d=0&id=meteo";
-                var z = document.getElementsByTagName("script")[0]; z.parentNode.insertBefore(my, z);
-                })();
-            </script>
-    </div>
-    <!-- widget meteo -->
+
+            <div id="widget_meteo" class=" mx-auto">
+        
+                <span id="l_meteo"><a href="http://www.mymeteo.info/r/saint-malo_ia">France, Saint-Malo d&eacute;tails m&eacute;t&eacute;o du jour</a></span>
+                <script type="text/javascript">
+                    (function() {
+                    var my = document.createElement("script"); my.type = "text/javascript"; my.async = true;
+                    my.src = "https://services.my-meteo.com/widget/js_design?ville=13644&format=horizontal&nb_jours=5&coins&ombre1=000000&c1=ffffff&c2=a9a9a9&c3=ffffff&c4=ffffff&c5=ffffff&police=4&t_icones=2&fond=6&masque=3&x=784&y=150&d=0&id=meteo";
+                    var z = document.getElementsByTagName("script")[0]; z.parentNode.insertBefore(my, z);
+                    })();
+                </script>
+            </div>
+            <!-- widget meteo -->
 
    
-   <span><a class="btn btn-primary btn-lg bouton text-align-center my-4" href="#" role="button" class="col-md-2 text-center"><strong>Visiter</a></strong></span>
+            <span><a class="btn btn-primary btn-lg bouton text-align-center my-4" href="#" role="button" class="col-md-2 text-center"><strong>Visiter</a></strong></span>
 
             <div class="title">
                 <center>  <h3>Suivez-nous sur les réseaux sociaux !</h3></p> </center>
-                          </div>
-            
-                          <div class="row-fluid centered">
-            <div class="socials">
-            
-        <center>
-            <input type="text" value="Ville de Saint-Malo"></input>
-         <a href="https://fr-fr.facebook.com/villedesaintmalo/">
-                                <img src="image/facebook.png">
-                    </a>
-                    
-
-                    <input type="text" value="Région Bretagne"></input>
-                    <a href="https://fr-fr.facebook.com/regionbretagne.bzh/">
-                                 <img src="image/facebook.png">
-            </a>
-
-            <input type="text" value="Ville de Saint-Malo"></input>
-            <a href="https://twitter.com/VilleSaintMalo" >
-                    <img src="image/twitter.png">
-            </a>
-
-            <input type="text" value="Région Bretagne"></input>
-            <a href="https://twitter.com/regionbretagne">                 
-                        <img src="image/twitter.png">
-            </a>
-        </center>
-
             </div>
-            </div>
-
-
-                <!-- Navigation button, visible on small resolution -->
-
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <i class="icon-menu"></i>
+            
+            <div class="row-fluid centered">
+                <div class="socials">
                 
-                </button>                 
-    
-    
+                    <center>
+                        <input type="text" value="Ville de Saint-Malo"></input>
+                        <a href="https://fr-fr.facebook.com/villedesaintmalo/">
+                                            <img src="image/facebook.png">
+                        </a>
+                                
+
+                        <input type="text" value="Région Bretagne"></input>
+                        <a href="https://fr-fr.facebook.com/regionbretagne.bzh/">
+                                            <img src="image/facebook.png">
+                        </a>
+
+                        <input type="text" value="Ville de Saint-Malo"></input>
+                        <a href="https://twitter.com/VilleSaintMalo" >
+                                <img src="image/twitter.png">
+                        </a>
+
+                        <input type="text" value="Région Bretagne"></input>
+                        <a href="https://twitter.com/regionbretagne">                 
+                                    <img src="image/twitter.png">
+                        </a>
+                    </center>
+
+                </div>
+            </div>
        
-        <section class="container mon-conteneur">
+    <!-- Nuage de mots -->
+     <div class="container-fluid">
+        <img src="{{ asset('image/nuage_de_mots.png') }}" alt="#" class="img-responsive align float-auto img-nuage">
+    </div>
+
+    <span><a class="btn btn-primary btn-lg bouton text-align-center my-4" href="#" role="button" class="col-md-2 text-center"><strong>Visiter</a></strong></span> 
+    
+    
+
+                <div class="col-md-12">
+                    <img src="image/covid_departement.jpg">
+                </div>
+
+
+    <div classe="container-fluid-row">                 
+      
+          
+                <div class="col-mx-5">
+                 
+                <i></i><p>La solution authentikFrance porte des services et un tourisme basé sur le respect,
+            fait de rencontres et d'échanges avec les locaux,les savoir-faire artisanaux et les cultures inter et intra-départementaux de France.</p><p>Profitons du confinement pour se (re)connecter et (re)découvrir notre pays.</p><p>La plateforme authentikFrance anime et accompagne le réseau des acteurs locaux gratuitement.</i></p>
+            
+                </div>
+            </div>
+ 
+
+
+        <div class=" mx-auto">
+            <center><h1>Bienvenue chez nous... </center></h1>
+        </div>
+         
+    <center> <strong><div class="alert alert-danger" role="alert">
+                       Bienvenue chez vous !
+    </div> #Restons solidaires</center></strong></div>
+        <center><audio src="audio/Charles Trenet - Douce France.mp3" controls="Charles Trenet - Douce France.mp3" autoplay> </audio></center>
+        </strong></center>
+    
+
+    <section class="container mon-conteneur">
         {% block body %}
-        
+
+
         {% endblock %}
         </section>
 
     
         <br>
-                 <footer class="bg-secondary text-white text-align py-8">
 
-           <p> &copy; 2020 - Soutenance WB3 - Groupe 2 - La Super TEAM !!! (｡◕‿◕｡) </p> 
-                               <p>EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
+        <footer class="bg-secondary text-white text-align py-8">
 
-                </footer>
+            <p> &copy; 2020 - Soutenance WB3 - Groupe 2 - La Super TEAM !!! (｡◕‿◕｡) </p> 
+            <p>EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
+
+        </footer>
+
 
         {% block javascripts %}
   
@@ -413,8 +457,10 @@
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-            
-            {% endblock %}
+
+        {% endblock %}
 
     </body>
 </html>
+
+

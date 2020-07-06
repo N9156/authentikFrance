@@ -37,6 +37,7 @@ class AuthentikController extends AbstractController
 
         $sites = $repo->findAll();
 
+
         dump($sites);
         dump($cat);
 
