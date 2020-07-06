@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Repository\SiteTouristiqueRepository;
 use App\Entity\SiteTouristique;
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,28 +23,33 @@ class AuthentikController extends AbstractController
 
     //liste tout de chaque categorie
     /**
-     * @Route("/authentik"), name="authentik")
+     * @Route("/authentik", name="authentik")
      */
 
-    public function index(SiteTouristiqueRepository $repo)
+    public function index(SiteTouristiqueRepository $repo, CategoryRepository $repoCat)
     { 
-        $sites_gastronomie = $repo->findByCategory('gastronomie'); 
-        $sites_artisan = $repo->findByCategory('artisan'); 
-        $sites_restaurateur = $repo->findByCategory('restaurateur');
-        $sites_autres = $repo->findByCategory('autres');
+        // $sites_gastronomie = $repo->findByCategory('gastronomie'); 
+        // $sites_artisan = $repo->findByCategory('artisan'); 
+        // $sites_restaurateur = $repo->findByCategory('restaurateur');
+        // $sites_autres = $repo->findByCategory('autres');
 
-        $site = $repo->findBy([
-            'category' => $category
-        ]);
+        $cat = $repoCat->findAll();
 
-        // dump($sites);
+        $sites = $repo->findAll();
+
+        dump($sites);
+        dump($cat);
 
         return $this->render('authentik/index.html.twig', [
-            'sites_gastronomie' => $sites_gastronomie,
-            'sites_artisan' => $sites_artisan,
-            'sites_restaurateur' => $sites_restaurateur,
-            'sites_autres' => $sites_autres
+            'sites' => $sites,
+            'category' => $cat
+            
+            // 'sites_gastronomie' => $sites_gastronomie,
+            // 'sites_artisan' => $sites_artisan,
+            // 'sites_restaurateur' => $sites_restaurateur,
+            // 'sites_autres' => $sites_autres
         ]);
+       
 
     }
 
@@ -59,8 +66,6 @@ class AuthentikController extends AbstractController
         return $this->render('authentik/show.html.twig', [
             'site' => $site
         ]);
-
-
     }
 
 }
