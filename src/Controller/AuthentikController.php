@@ -25,5 +25,6 @@ class AuthentikController extends AbstractController
     {
         return $this->render('authentik/accueil.htlm.twig');
     }
+    
 
 }
