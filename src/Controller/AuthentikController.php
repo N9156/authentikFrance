@@ -71,3 +71,19 @@ class AuthentikController extends AbstractController
     
 
 }
+/**
+* @Route("/blog/contact", name="blog_contact")
+*/
+        public function contact(Request $request, EntityManagerInterface $manager)
+    {
+            $contact = new Contact();
+            $form = $this->createForm(ContactType::class, $contact);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($contact); // on prépare l'insertion
+            $manager->flush(); // on execute l'insertion
+            }
+        return $this->render("blog/contact.html.twig", [
+        'formContact' => $form->createView()
+        ]);
+    }
