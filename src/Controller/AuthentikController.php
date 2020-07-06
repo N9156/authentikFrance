@@ -10,30 +10,34 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthentikController extends AbstractController
 {
     /**
-     * @Route("/authentik", name="authentik")
+     * @Route("/", name="home")
      */
-    public function index()
+    public function home()
     {
-        return $this->render('authentik/index.html.twig', [
+        return $this->render('authentik/home.html.twig', [
             'controller_name' => 'AuthentikController',
         ]);
     }
 
     //liste tout de chaque categorie
     /**
-     * @Route("/authentik/accueil"), name="accueil")
+     * @Route("/authentik"), name="authentik")
      */
 
-    public function liste(SiteTouristiqueRepository $repo)
+    public function index(SiteTouristiqueRepository $repo)
     { 
         $sites_gastronomie = $repo->findByCategory('gastronomie'); 
         $sites_artisan = $repo->findByCategory('artisan'); 
         $sites_restaurateur = $repo->findByCategory('restaurateur');
         $sites_autres = $repo->findByCategory('autres');
 
+        $site = $repo->findBy([
+            'category' => $category
+        ]);
+
         // dump($sites);
 
-        return $this->render('authentik/accueil.html.twig', [
+        return $this->render('authentik/index.html.twig', [
             'sites_gastronomie' => $sites_gastronomie,
             'sites_artisan' => $sites_artisan,
             'sites_restaurateur' => $sites_restaurateur,

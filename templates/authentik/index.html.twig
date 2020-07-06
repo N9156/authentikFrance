@@ -1,45 +1,103 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}authentikFrance{% endblock %}
+{% block title %}AuthentikFrance | Sites{% endblock %}
 
 {% block body %}
 
-        <div class=" mx-auto"><center><h1>Bienvenue chez nous... 
-            </center></h1></div>
-          
-            <center> <strong><div class="alert alert-danger" role="alert">
-                Bienvenue chez vous !
-            </div> #Restons solidaires</center></strong></div>
-                <center><audio src="audio/Charles Trenet - Douce France.mp3" controls="Charles Trenet - Douce France.mp3" autoplay> </audio></center>
-              </strong></center>
-    
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="gastronomie-tab" data-toggle="tab" href="#gastronomie" role="tab" aria-controls="gastronomie" aria-selected="true">Gastronomie</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="artisan-tab" data-toggle="tab" href="#artisan" role="tab" aria-controls="artisan" aria-selected="false">Artisan</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="restaurateur-tab" data-toggle="tab" href="#restaurateur" role="tab" aria-controls="restaurateur" aria-selected="false">Restaurateur</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="autres-tab" data-toggle="tab" href="#autres" role="tab" aria-controls="autres" aria-selected="false">Autres</a>
+  </li>
+</ul>
 
-<!-- Nuage de mots -->
-     <div class="container-fluid">
-        <img src="{{ asset('image/nuage_de_mots.png') }}" alt="#" class="img-responsive align float-auto img-nuage">
-    </div>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="gastronomie" role="tabpanel" aria-labelledby="gastronomie-tab">
 
-<span><a class="btn btn-primary btn-lg bouton text-align-center my-4" href="#" role="button" class="col-md-2 text-center"><strong>Visiter</a></strong></span> 
-                   
-<div class="px-auto">
-    <img src="image/covid_departement.jpg">
-</div>
+        {% for data in sites_gastronomie %}
+            
+              <div class="card mb-2 text-center" style="width: 18rem;">
+                  <img src="{{ data.image }}" class="card-img-top" alt="...">
 
-    <div classe="container">                 
-           <div class="text-align-center md-auto">
-                   <div class="row">
-    
-                    <p>La solution authentikFrance porte des services et un tourisme basé sur le respect,
-            {% autoescape  %}fait de rencontres et d'échanges avec les locaux,{% endautoescape %} {% autoescape  %}les savoir-faire artisanaux et les cultures inter et intra-départementaux de France.{% endautoescape %}</p>
-            <p>Profitons du confinement pour se (re)connecter et (re)découvrir notre pays.</p>
-    {% autoescape  %}<p>La plateforme authentikFrance anime et accompagne le réseau des acteurs locaux gratuitement.</p>{% endautoescape %}
-     
-    </div>
-            </div>
+                  <div class="card-body">
+                      <h5 class="card-title">{{ data.title }}</h5>
+                      <h3 class="card-title">{{data.adress}}</h3>
+                      <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                      <hr>
+
+                      <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>      
+                  </div>
+              </div>
+
+        {% endfor %}
+  </div>
+
+  <div class="tab-pane fade" id="artisan" role="tabpanel" aria-labelledby="artisan-tab">
+          {% for data in sites_artisan %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>     
                     </div>
+                </div>
 
-</body>
+          {% endfor %}
+  </div>
 
-</html>
+  
+  <div class="tab-pane fade" id="restaurateur" role="tabpanel" aria-labelledby="restaurateur-tab">
+          {% for data in sites_restaurateur %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>   
+                    </div>
+                </div>
+
+          {% endfor %}
+  </div>
+
+  <div class="tab-pane fade" id="autres" role="tabpanel" aria-labelledby="autres-tab">
+          {% for data in sites_autres %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>  
+                    </div>
+                </div>
+
+          {% endfor %}
+  </div>
+
+</div>
 
 {% endblock %}
