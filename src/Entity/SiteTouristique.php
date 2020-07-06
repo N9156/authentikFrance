@@ -80,8 +80,6 @@ class SiteTouristique
      */
     private $comment;
 
-    
-    
 
     public function getId(): ?int
     {
