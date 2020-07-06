@@ -1,9 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}authentikFrance{% endblock %}
+{% block title %}AuthentikFrance | Sites{% endblock %}
 
 {% block body %}
 
-<h1>Bienvenue dans notre Région !</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+
+  <nav class="nav nav-pills flex-column flex-sm-row">
+
+    {% for data in category %}
+  <a class="flex-sm-fill text-sm-center nav-link active" href="{{ path('authentik', {'category': data.title }) }}">{{ data.title }}</a>
+    {% endfor %}
+    
+</nav>
+
+</ul>
+
+<div class="row d-flex justify-content-around">
+   {% for data in category %}
+
+        {% for data2 in data.sitestouristiques %}
+
+        <div class="card" style="width: 18rem;">
+            <img src="{{ data2.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ data2.title }}</h5>
+                    <p class="card-text">{{ data2.content|slice(0,100)|raw}}</p>
+                    <a href="{{ path('authentik_show', {'id': data2.id } ) }}" class="btn btn-primary">Voir plus de detail</a>
+                </div>
+        </div>
+
+            {# {{ data2.title }}<br> #}
+
+        {% endfor %}
+
+   {% endfor %}
+</div>
+   
+</div>
 
 {% endblock %}
