@@ -68,5 +68,6 @@ class AuthentikController extends AbstractController
             'site' => $site
         ]);
     }
+    
 
 }
