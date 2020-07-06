@@ -31,9 +31,9 @@ class AuthentikController extends AbstractController
         $sites_restaurateur = $repo->findByCategory('restaurateur');
         $sites_autres = $repo->findByCategory('autres');
 
-        $site = $repo->findBy([
-            'category' => $category
-        ]);
+        // $site = $repo->findBy([
+        //     'category' => $category
+        // ]);
 
         // dump($sites);
 
