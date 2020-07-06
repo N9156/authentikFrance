@@ -1,28 +1,103 @@
 {% extends "base.html.twig" %}
 
-{% block title %}AuthentikFrance | Articles{% endblock %}
+{% block title %}AuthentikFrance | Sites{% endblock %}
 
 {% block body %}
 
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="gastronomie-tab" data-toggle="tab" href="#gastronomie" role="tab" aria-controls="gastronomie" aria-selected="true">Gastronomie</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="artisan-tab" data-toggle="tab" href="#artisan" role="tab" aria-controls="artisan" aria-selected="false">Artisan</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="restaurateur-tab" data-toggle="tab" href="#restaurateur" role="tab" aria-controls="restaurateur" aria-selected="false">Restaurateur</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="autres-tab" data-toggle="tab" href="#autres" role="tab" aria-controls="autres" aria-selected="false">Autres</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="gastronomie" role="tabpanel" aria-labelledby="gastronomie-tab">
+
+        {% for data in sites_gastronomie %}
+            
+              <div class="card mb-2 text-center" style="width: 18rem;">
+                  <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                  <div class="card-body">
+                      <h5 class="card-title">{{ data.title }}</h5>
+                      <h3 class="card-title">{{data.adress}}</h3>
+                      <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                      <hr>
+
+                      <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>      
+                  </div>
+              </div>
+
+        {% endfor %}
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+  <div class="tab-pane fade" id="artisan" role="tabpanel" aria-labelledby="artisan-tab">
+          {% for data in sites_artisan %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>     
+                    </div>
+                </div>
+
+          {% endfor %}
   </div>
+
+  
+  <div class="tab-pane fade" id="restaurateur" role="tabpanel" aria-labelledby="restaurateur-tab">
+          {% for data in sites_restaurateur %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>   
+                    </div>
+                </div>
+
+          {% endfor %}
+  </div>
+
+  <div class="tab-pane fade" id="autres" role="tabpanel" aria-labelledby="autres-tab">
+          {% for data in sites_autres %}
+              
+                <div class="card mb-2 text-center" style="width: 18rem;">
+                      <img src="{{ data.image }}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <h3 class="card-title">{{data.adress}}</h3>
+                        <p class="card-text">{{ data.content|slice(0, 100)|raw }}...</p>
+                        <hr>
+
+                        <a href="{{ path('authentik_show', {'id': data.id } ) }}" class="btn btn-dark">Voir le détail</a>  
+                    </div>
+                </div>
+
+          {% endfor %}
+  </div>
+
 </div>
 
-{% endoblock %}
+{% endblock %}
