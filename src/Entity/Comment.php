@@ -41,9 +41,10 @@ class Comment
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity=SiteTouristique::class, mappedBy="comment")
+     * @ORM\ManyToOne(targetEntity=SiteTouristique::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $sitestouristiquescomment;
+    private $siteTouristiques;
 
     public function __construct()
     {
@@ -103,34 +104,17 @@ class Comment
         return $this;
     }
 
-    /**
-     * @return Collection|SiteTouristique[]
-     */
-    public function getSitestouristiquescomment(): Collection
+    public function getSiteTouristiques(): ?SiteTouristique
     {
-        return $this->sitestouristiquescomment;
+        return $this->siteTouristiques;
     }
 
-    public function addSitestouristiquescomment(SiteTouristique $sitestouristiquescomment): self
+    public function setSiteTouristiques(?SiteTouristique $siteTouristiques): self
     {
-        if (!$this->sitestouristiquescomment->contains($sitestouristiquescomment)) {
-            $this->sitestouristiquescomment[] = $sitestouristiquescomment;
-            $sitestouristiquescomment->setComment($this);
-        }
+        $this->siteTouristiques = $siteTouristiques;
 
         return $this;
     }
 
-    public function removeSitestouristiquescomment(SiteTouristique $sitestouristiquescomment): self
-    {
-        if ($this->sitestouristiquescomment->contains($sitestouristiquescomment)) {
-            $this->sitestouristiquescomment->removeElement($sitestouristiquescomment);
-            // set the owning side to null (unless already changed)
-            if ($sitestouristiquescomment->getComment() === $this) {
-                $sitestouristiquescomment->setComment(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

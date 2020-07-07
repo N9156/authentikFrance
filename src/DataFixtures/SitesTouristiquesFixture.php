@@ -47,48 +47,50 @@ class SitesTouristiquesFixture extends Fixture
                      ->setDescription($faker->text($maxNbChars = 50));
 
             $manager->persist($category); 
-
-            // Création entre 4 et 10 commentaires par site
-            for($k = 1; $k <= mt_rand(4,10); $k++)
-            {
-                $comment = new Comment;
-
-                $content = '<p>' . join($faker->paragraphs(2), '</p><p>') . '</p>'; 
-                
-                $now = new \Datetime;
-             
-                $comment->setAuthor($faker->lastName)
-                        ->setContent($content) 
-                        ->setCreatedAt($faker->dateTime($max = 'now', $timezone = null))
-                        ->setUsers($user);
-                    
-                $manager->persist($comment); 
-            }
+            
 
             // création entre 4 et 6 sites par catégorie
             for($j = 1; $j <= mt_rand(4,6); $j++)
             {   
-            
-                $site = new SiteTouristique;
 
-                $content = '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>'; 
+                 $site = new SiteTouristique;
+ 
+                 $content = '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>'; 
+ 
+                 $site->setTitle($faker->sentence()) 
+                      ->setContent($content) 
+                      ->setImage($faker->imageUrl()) 
+                      ->setAdress($faker->address)
+                      ->setPhone($faker->e164PhoneNumber)
+                      ->setMail($faker->email)
+                      ->setContactProfessionnel($faker->lastname)
+                      ->setUrl($faker->url)
+                      ->setPublication($faker->randomElement($array = array ('0','1')))
+                      ->setUser($user)
+                      ->setCategory($category);
+                         
+                 $manager->persist($site); 
+                 
 
-                $site->setTitle($faker->sentence()) 
-                     ->setContent($content) 
-                     ->setImage($faker->imageUrl()) 
-                     ->setAdress($faker->address)
-                     ->setPhone($faker->e164PhoneNumber)
-                     ->setMail($faker->email)
-                     ->setContactProfessionnel($faker->lastname)
-                     ->setUrl($faker->url)
-                     ->setPublication($faker->randomElement($array = array ('0','1')))
-                     ->setComment($comment)
-                     ->setUser($user)
-                     ->setCategory($category);
-                        
-                $manager->persist($site); 
+                // Création entre 4 et 10 commentaires par site
+                for($k = 1; $k <= mt_rand(4,10); $k++)
+                {
+                    $comment = new Comment;
+
+                    $content = '<p>' . join($faker->paragraphs(2), '</p><p>') . '</p>'; 
+                    
+                    $now = new \Datetime;
                 
+                    $comment->setAuthor($faker->lastName)
+                            ->setContent($content) 
+                            ->setCreatedAt($faker->dateTime($max = 'now', $timezone = null))
+                            ->setUsers($user)
+                            ->setSiteTouristiques($site);
+                        
+                    $manager->persist($comment); 
+                }
             }
+    
         }
 
         $manager->flush(); 
