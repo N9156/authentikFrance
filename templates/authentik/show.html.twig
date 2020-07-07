@@ -1,27 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AuthentikFrance | Sites{% endblock %}
-
+{% block title %} AuthentikFrance | Site {% endblock %}
+ 
 {% block body %}
 
- <h1 class="display-4 my-4 text-center">Détails</h1>
+<h1 class="display-4 my-4 text-center">{{ site.title }}</h1>
 
-    <div class="text-center col-md-12 card mb-2 p-0">
-        
+     <div class="col-md-12 card mb-2 p-0">
+
         <img src="{{ site.image }}" class="card-img-top" alt="{{ site.title }}">
-        <div class="card-body">
-            <h5 class="card-title text-center"> {{ site.title }} </h5>
-            <p class="">{{ site.content|raw }}</p>
-            <p class="">{{ site.adress }}</p>
-            <p class="">{{ site.contactProfessionnel }}</p>
-            <p class="">{{ site.phone }}</p>
-            <p class="">{{ site.mail }}</p>
-            <p class="">{{ site.url }}</p>
-            <hr>
-        </div>
+        
+            <div class="card-body">
+                {# <h5 class="card-title">Card title</h5> #}
+                <h4 class="text-center font-italic">{{ site.content|raw }}</h4>
+                <hr>
+                <p class="text-righ">{{ site.adress }}</p>
+                <hr>
+                <p class="text-righ">{{ site.contactProfessionnel }}</p>
+                <p class="text-righ">{{ site.phone }}</p>
+                <p class="text-righ">{{ site.mail }}</p>
+                <p class="text-righ ">{{ site.url }}</p>
+                <hr>
+                <a href=""><button type="button" class="btn btn-outline-info"><i class="far fa-comments">Faire de commentaire</i></button></a>
+            </div>
 
     </div>
 
-    <div class="col-md-12">
+    <h2 class="">Vos réactions...</h2>
+
+    <div class="col-md-12 mb-5">
+    
+                <div class="row border rounded mb-2 bg-dark text-white">
+                    <div class="col-md-4">
+                        <span>{{ site.comment.author }}</span> 
+                        <small class="font-italic">( {{ site.comment.createdAt|date('d/m/Y à H:i:s') }} )</small>
+                    </div>
+                    <div class="col-md-8">
+                        <p>{{ site.comment.content|raw }}</p>
+                    </div>
+                </div>
+    </div>
+
+{#     
+        {% for comments in site.comment %}
+
+                <div class="row border rounded mb-2 bg-dark text-white">
+                    <div class="col-md-4">
+                        <span>{{ comments.author }}</span> 
+                        <small class="font-italic">( {{ comments.createdAt|date('d/m/Y à H:i:s') }} )</small>
+                    </div>
+                    <div class="col-md-8">
+                        <p>{{ comments.content|raw }}</p>
+                    </div>
+                </div>
+
+        {% endfor %} #}
+
 
 {% endblock %}
