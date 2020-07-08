@@ -86,6 +86,7 @@ class AuthentikController extends AbstractController
             'site' => $site
         ]);
     }
+
     
   
 //     /**
@@ -106,4 +107,5 @@ class AuthentikController extends AbstractController
 //     }
 
 }
+
 
