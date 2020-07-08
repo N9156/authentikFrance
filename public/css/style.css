@@ -103,12 +103,12 @@ img.scaled {
 }
 
 
-div#bloc1{
+/* div#bloc1{
     display: inline-block;
         float: auto;
         background: #789;
         width:2000px;
-}
+} */
 
 div#bloc2{
     background:#abc;
@@ -132,10 +132,10 @@ div#authentikFrance{
     
 
 
-div#solidarite_covid19{
+/* div#solidarite_covid19{
     width: 100px;
     margin:auto;
-}
+} */
 
 
 /*Social icons - partie FOOTER
@@ -163,8 +163,15 @@ div#solidarite_covid19{
 .social li a:hover {
     color:#181A1C;
 }
-/*
 
+/*
+Liste des sites turistiques
+***************************************************************************/
+.card:hover{
+    width: 25%;
+}
+
+/*
 Sections 
 ***************************************************************************/
 .section {

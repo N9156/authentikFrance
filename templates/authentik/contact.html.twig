@@ -1,0 +1,94 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+        <div class="container">
+                <div class="row">
+                         <div class="col-lg-12 col-md-9">
+                                     <h1 class="title">Contacter l'équipe d'authentikFrance</h1>
+                        </div>
+                </div>
+    
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                         <h4>Pour entrer en contact avec l'équipe d'authentikFrance, remplissez ce formulaire...</h4>
+                       
+                            <p>Si vous souhaitez communiquer sur authentikFrance, utilisez notre formulaire de contact</p>
+                            <img src="https://www.valleesduhautanjou.fr/sites/ccvha/files/styles/slider/public/2020-04/dispositif-aides-aux-entreprises.png?h=c7228a15&itok=cWCK_RDS" />
+            </div>
+        </div>
+    
+        <form class="form-horizontal" role="form">
+            <div class='container'>
+    
+                <div class='row'>
+                    <div class="col-lg-12">
+                        <div class="form-heading">
+                            <span class="prg">Vos informations de contact:</span>
+                        </div>
+                    </div>
+                </div>
+            </br>
+                     <div class='row'>
+    
+                    <div class="col-lg-6">
+                        <!--<form class="form-horizontal" role="form">-->
+                            
+                        <div class="form-group">
+                                <label for="nom" class="col-sm-2 control-label">Nom:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="name" id="name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom" class="col-sm-2 control-label">Prénom:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="prenom" id="prenom" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                    <label for="mail" class="col-sm-2 control-label">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tel" class="col-sm-2 control-label">Téléphone:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="tel" id="tel" required>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+    
+                                           
+                        </div>
+    
+                    </div>
+                               
+                            <!--</form>-->
+    
+                
+    
+                   
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="comment">Laissez-nous un commentaire:</label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                    </div>
+    
+                    <div class="col-xs-12">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+    
+                </div>
+            </div>
+        </form>
+    
+
+{% endblock %}
