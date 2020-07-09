@@ -110,7 +110,7 @@ img.scaled {
         width:2000px;
 } */
 
-div#bloc2{
+#bloc2{
     background:#abc;
 }
 
@@ -126,13 +126,13 @@ div#bloc2{
     width: 900px;
     margin:auto;
 }
-div#authentikFrance{
+#authentikFrance{
     width: 100px;
     text-align: auto;
     
 
 
-/* div#solidarite_covid19{
+/* #solidarite_covid19{
     width: 100px;
     margin:auto;
 } */
