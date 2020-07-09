@@ -6,15 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User
 {
     /**
      * @ORM\Id()
@@ -59,15 +55,12 @@ class User implements UserInterface
     private $postcode;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=20)
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(
-     *          message = "Cette adresse Email '{{ value }}' n'est pas valide."
-     * )
      */
     private $mail;
 
@@ -77,25 +70,17 @@ class User implements UserInterface
     private $nationality;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", length=255)
      */
-    private $roles = [];
+    private $roles;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
-     * @Assert\EqualTo(propertyPath="confirm_password", message="Les mots de passe ne correspondent pas")
      */
     private $password;
 
     /**
-     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas")
-     */
-    public $confirm_password;
-
-    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users", orphanRemoval=true)
-     * 
      */
     private $comments;
 
@@ -238,12 +223,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): ?string
     {
         return $this->roles;
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(string $roles): self
     {
         $this->roles = $roles;
 
@@ -261,15 +246,6 @@ class User implements UserInterface
 
         return $this;
     }
-    public function getSalt()
-    {
-        
-    }
-    public function eraseCredentials()
-    {
-        
-    }
-    
 
     /**
      * @return Collection|Comment[]

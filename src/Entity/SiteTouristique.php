@@ -25,7 +25,7 @@ class SiteTouristique
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $content;
 
@@ -40,7 +40,7 @@ class SiteTouristique
     private $adress;
 
     /**
-     * @ORM\Column(type="integer")  
+     * @ORM\Column(type="integer")
      */
     private $phone;
 

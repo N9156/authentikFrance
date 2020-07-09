@@ -26,8 +26,8 @@ class SitesTouristiquesFixture extends Fixture
                    ->setSex($faker->randomElement($array = array ('F','M')))
                    ->setAdress($faker->streetAddress)
                    ->setTown($faker->country)
-                   ->setPostcode(75000)
-                   ->setPhone('0709123454')
+                   ->setPostcode($faker->postcode)
+                   ->setPhone($faker->e164PhoneNumber)
                    ->setMail($faker->email)
                    ->setNationality($faker->city)
                    ->setRoles($faker->randomElement($array = array ('Admin','Professionnel','Visiteur')))
@@ -72,7 +72,6 @@ class SitesTouristiquesFixture extends Fixture
                  $manager->persist($site); 
                  
 
-
                 // Création entre 4 et 10 commentaires par site
                 for($k = 1; $k <= mt_rand(4,10); $k++)
                 {
@@ -81,7 +80,6 @@ class SitesTouristiquesFixture extends Fixture
                     $content = '<p>' . join($faker->paragraphs(2), '</p><p>') . '</p>'; 
                     
                     $now = new \Datetime;
-
                 
                     $comment->setAuthor($faker->lastName)
                             ->setContent($content) 

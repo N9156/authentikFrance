@@ -24,7 +24,7 @@ class UserFixtures extends Fixture
                 ->setAdress($faker->streetAddress)
                 ->setTown($faker->country)
                 ->setPostcode(75000)
-                ->setPhone('0709123456')
+                ->setPhone($faker->phoneNumber)
                 ->setMail($faker->email)
                 ->setNationality($faker->city)
                 ->setRoles($faker->randomElement($array = array('Admin','Professionnel','Visiteur')))
