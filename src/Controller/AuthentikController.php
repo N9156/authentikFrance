@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Contact;
 use App\Entity\Category;
+use App\Form\CommentType;
 use App\Form\ContactType;
 use App\Entity\SiteTouristique;
+use Doctrine\ORM\EntityManager;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Notification\ContactNotification;
@@ -26,7 +29,7 @@ class AuthentikController extends AbstractController
         ]);
     }
 
-    //liste tout de chaque categorie
+    //liste tout les sites touristiques de chaque categorie
     /**
      * @Route("/authentik", name="authentik")
      */
@@ -44,7 +47,7 @@ class AuthentikController extends AbstractController
             'category' => $cat   
         ]);
     }
-
+    
     /**
     * @Route("/authentik/contact", name="authentik_contact")
     */
@@ -74,10 +77,40 @@ class AuthentikController extends AbstractController
         ]);
     }
 
-    // show() 
+    /// New commentaire
+
     /**
-     * @Route("/authentik/{id}", name="authentik_show")
+     * @Route("/authentik/new_commentaire", name="authentik_commentaire")
+     *
      */
+
+    public function create(Request $request, EntityManagerInterface $manager)
+    {
+        $commentaire = New Comment();
+
+        $form_comment = $this->createForm(CommentType::class, $commentaire);
+        $form_comment->handleRequest($request);
+        
+        if($form_comment->isSubmitted() && $form_comment->isValid())
+        {
+            $commentaire->setCreatedAt(new \DateTime());
+            $manager->persist($commentaire); 
+            $manager->flush(); 
+
+            $this->addFlash('success', 'Merci ! Votre commentaire a été bien prise en compte');
+ 
+        }
+            return $this->render('authentik/new_commentaire.html.twig', [
+                'formComment'=> $form_comment->createView()
+            ]);
+    }
+
+          
+    // 1 Site en particuliere //
+    /**
+    * @Route("/authentik/{id}", name="authentik_show")
+    * 
+    */
     public function show(SiteTouristiqueRepository $repo, $id)
     {
         $site = $repo->find($id);
@@ -88,24 +121,7 @@ class AuthentikController extends AbstractController
             'site' => $site
         ]);
     }
-    
-  
-//     /**
-//     * @Route("/authentik/contact", name="authentik_contact")
-//     */
-//     public function contact(Request $request, EntityManagerInterface $manager)
-//     {
-//             $contact = new Contact();
-//             $form = $this->createForm(ContactType::class, $contact);
-//             $form->handleRequest($request);
-//             if ($form->isSubmitted() && $form->isValid()) {
-//             $manager->persist($contact); // on prépare l'insertion
-//             $manager->flush(); // on execute l'insertion
-//             }
-//         return $this->render("blog/contact.html.twig", [
-//         'formContact' => $form->createView()
-//         ]);
-//     }
 
+     
 }
 

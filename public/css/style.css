@@ -103,12 +103,11 @@ img.scaled {
 }
 
 
-/* div#bloc1{
+#bloc1{
     display: inline-block;
-        float: auto;
-        background: #789;
-        width:2000px;
-} */
+    background: #789;
+    width:2000px;
+}
 
 #bloc2{
     background:#abc;
@@ -126,16 +125,18 @@ img.scaled {
     width: 900px;
     margin:auto;
 }
+
 #authentikFrance{
     width: 100px;
     text-align: auto;
     
+}
 
 
-/* #solidarite_covid19{
+#solidarite_covid19{
     width: 100px;
     margin:auto;
-} */
+}
 
 
 /*Social icons - partie FOOTER
@@ -164,12 +165,6 @@ img.scaled {
     color:#181A1C;
 }
 
-/*
-Liste des sites turistiques
-***************************************************************************/
-.card:hover{
-    width: 25%;
-}
 
 /*
 Sections 
