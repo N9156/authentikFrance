@@ -18,19 +18,19 @@
             <p class="text-righ">{{ site.adress }}</p>
             <hr>
             <p class="text-righ">{{ site.contactProfessionnel }}</p>
-            <p class="text-righ">{{ site.phone }}</p>
+            <p class="text-righ">{{ site.phone }}</p>git
             <p class="text-righ">{{ site.mail }}</p>
             <p class="text-righ ">{{ site.url }}</p>  
         </div>
 
         <div class="card-footer">
-            <a href=""><button type="button" class="btn btn-outline-info float-right"><i class="far fa-comments">Faire de commentaire</i></button></a>
+            <a href="{{ path('authentik_commentaire') }}"><button type="button" class="btn btn-outline-info float-right"><i class="far fa-comments">Faire de commentaire</i></button></a>
         </div>
 
     </div>
 
-    <h3>Quel est votre commentaire?</h3>
-
+    <h3>Quel est votre commentaire?</h3>  
+      
         {% for comits in site.comments %}
 
                 <div class="row border rounded mb-2 bg-info text-white">
@@ -44,6 +44,7 @@
                 </div>
 
         {% endfor %}
+
 
 
 {% endblock %}

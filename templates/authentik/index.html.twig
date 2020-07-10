@@ -13,10 +13,12 @@
         <a class="flex-sm-fill text-sm-center nav-link active" href="{{ path('authentik', {'category': data.title }) }}">{{ data.title }}</a>
       
     {% endfor %}
-    
+
   </nav>
 
 </ul>
+
+
 
 <div class="row d-flex justify-content-around">
 
@@ -30,7 +32,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title">{{ data2.title }}</h5>
-                    <p class="card-text">{{ data2.content|slice(0,100)|raw}}</p>
+                    <p class="card-text">{{ data2.content|slice(0,70)|raw}}</p>
                     <a href="{{ path('authentik_show', {'id': data2.id } ) }}" class="btn btn-info float-right">Voir plus de detail</a>
                 </div>
         </div>
