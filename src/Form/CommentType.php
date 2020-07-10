@@ -23,11 +23,6 @@ class CommentType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'userlastname'
             ])
-            
-            ->add('siteTouristiques', EntityType::class,[
-                'class' => SiteTouristique::class,
-                'choice_label' => 'title'
-            ])
         ;
     }
 

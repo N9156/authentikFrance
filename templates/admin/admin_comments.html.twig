@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BackOffice | Gestion des commentaires{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4 text-center my-4">BACKOFFICE | Gestion des commentaires</h1>
+
+    {% for message in app.flashes('success') %}
+    <div class="col-md-5 mt-4 mx-auto alert alert-success text-center">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <a href="{{ path('admin') }}" class="btn btn-dark btn-sm mb-2">Retour au BACKOFFICE</a>
+
+    <table class="table table-bordered text-center">
+
+        <tr>
+        {% for data in colonnes %}
+
+            {% if data != 'id' %}
+                <th>{{ data }}</th>
+            {% endif %}
+
+        {% endfor %}
+        </tr>
+
+        {% for data in comments %}
+
+            <tr>
+                <td class="align-middle">{{ data.id }}</td>
+
+                <td class="align-middle">{{ data.author }}</td>
+
+                <td class="align-middle">{{ data.content|raw }}</td>
+
+                <td class="align-middle">{{ data.createdAt|date("d/m/Y à H:i:s") }}</td>
+
+                <td class="align-middle"><a href="{{ path('admin_delete_comment', {'id': data.id}) }}" class="btn btn-danger text-white" onclick="return(confirm('En êtes vous certain ?'))"><i class="fas fa-trash-alt fa-1x"></i></a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
