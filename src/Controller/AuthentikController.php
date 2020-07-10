@@ -13,6 +13,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Notification\ContactNotification;
 use App\Repository\SiteTouristiqueRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +30,8 @@ class AuthentikController extends AbstractController
         ]);
     }
 
-    //liste tout les sites touristiques de chaque categorie
+// Liste tous les sites touristiques
+
     /**
      * @Route("/authentik", name="authentik")
      */
@@ -47,7 +49,7 @@ class AuthentikController extends AbstractController
             'category' => $cat   
         ]);
     }
-    
+
     /**
     * @Route("/authentik/contact", name="authentik_contact")
     */
@@ -58,8 +60,6 @@ class AuthentikController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
-                    dump($contact);
-                    dump($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -77,51 +77,39 @@ class AuthentikController extends AbstractController
         ]);
     }
 
-    /// New commentaire
-
+     // 1 Site en particuliere et commentaire et liste de tous les commentaires //
     /**
-     * @Route("/authentik/new_commentaire", name="authentik_commentaire")
-     *
-     */
-
-    public function create(Request $request, EntityManagerInterface $manager)
+    * @Route("/authentik/{id}", name="authentik_show")
+    * 
+    */
+    public function show(SiteTouristiqueRepository $repo, $id, Request $request, EntityManagerInterface $manager)
     {
-        $commentaire = New Comment();
+        $site = $repo->find($id);
+    
+        dump($site);
 
+        $commentaire = New Comment();
+        
         $form_comment = $this->createForm(CommentType::class, $commentaire);
         $form_comment->handleRequest($request);
         
         if($form_comment->isSubmitted() && $form_comment->isValid())
         {
             $commentaire->setCreatedAt(new \DateTime());
+
+            $commentaire->setSiteTouristiques($site);
+
             $manager->persist($commentaire); 
             $manager->flush(); 
 
             $this->addFlash('success', 'Merci ! Votre commentaire a été bien prise en compte');
- 
         }
-            return $this->render('authentik/new_commentaire.html.twig', [
-                'formComment'=> $form_comment->createView()
-            ]);
-    }
-
-          
-    // 1 Site en particuliere //
-    /**
-    * @Route("/authentik/{id}", name="authentik_show")
-    * 
-    */
-    public function show(SiteTouristiqueRepository $repo, $id)
-    {
-        $site = $repo->find($id);
-
-        dump($site);
 
         return $this->render('authentik/show.html.twig', [
-            'site' => $site
+            'site' => $site,
+            'formComment'=> $form_comment->createView()
         ]);
     }
-
      
 }
 
