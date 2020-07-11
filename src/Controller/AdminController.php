@@ -27,7 +27,7 @@ class AdminController extends AbstractController
      * @Route("/admin/admin_sites_touristiques", name="admin_sites_touristiques")
      */
     public function adminSitesTouristiques(SiteTouristiqueRepository $repo)
-    {
+    {   
         $sit = $this->getDoctrine()->getManager();
 
         $colonnes_sites = $sit->getClassMetadata(SiteTouristique::class)->getFieldNames();

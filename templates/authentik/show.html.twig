@@ -22,12 +22,10 @@
             <p class="text-righ">{{ site.mail }}</p>
             <p class="text-righ ">{{ site.url }}</p>  
         </div>
-{# 
-        <div class="card-footer">
-            <a href="{{ path('authentik_commentaire') }}"><button type="button" class="btn btn-outline-info float-right"><i class="far fa-comments">Faire de commentaire</i></button></a>
-        </div> #}
 
     </div>
+
+    <div>
 
     <h3>Quel est votre commentaire?</h3>
 
@@ -41,8 +39,7 @@
 
     {% endfor %}
 
-
-    <div class="col-md-7 mx-auto">
+    <div>
 
         {{ form_start(formComment, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
 
@@ -56,8 +53,12 @@
 
     </div>
 
+    </div>
+
 {# Liste des articles #}
-      
+
+      <h5 class="mx-auto m3">{{ site.comments|length }} Commentaires</h5>
+
         {% for comits in site.comments %}
 
                 <div class="row border rounded mb-2 bg-info text-white">

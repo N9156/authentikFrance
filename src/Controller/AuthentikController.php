@@ -31,24 +31,43 @@ class AuthentikController extends AbstractController
     }
 
 // Liste tous les sites touristiques
-
     /**
      * @Route("/authentik", name="authentik")
      */
-
     public function index(SiteTouristiqueRepository $repo, CategoryRepository $repoCat)
     { 
         $cat = $repoCat->findAll();
         $sites = $repo->findAll();
-      
-        dump($sites);
-        dump($cat);
+    
+        // dump($sites);
+        // dump($cat);
 
         return $this->render('authentik/index.html.twig', [
-            'sites' => $sites,
-            'category' => $cat   
+         'sites' => $sites,
+         'category' => $cat   
         ]);
     }
+
+//Liste des sites x category
+    /**
+     * @Route("/authentik_liste/{id}", name="authentik_liste")
+     */
+    public function listeXcategory(CategoryRepository $repo, $id, SiteTouristiqueRepository $reposit)
+     {   
+        $cat = $repo->findAll();
+        $category= $repo->find($id);
+        $site = $reposit->findBy(array('category' => $category));
+
+         dump($site);
+         dump($cat);
+         dump($category);
+
+        return $this->render('authentik/sitesxcategory.html.twig', [
+            'category' => $cat,
+            'category_liste' => $site
+            ]);
+    }
+
 
     /**
     * @Route("/authentik/contact", name="authentik_contact")
@@ -86,7 +105,7 @@ class AuthentikController extends AbstractController
     {
         $site = $repo->find($id);
     
-        dump($site);
+        // dump($site);
 
         $commentaire = New Comment();
         
