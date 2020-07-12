@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+
+use App\Entity\User;
+use App\Form\UserType;
 use App\Entity\SiteTouristique;
 use App\Form\SiteTouristiqueType;
 use App\Repository\UserRepository;
@@ -14,9 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
+
+   /**
+     * @Route("/user", name="user")
+     */
+    public function user()
+    {
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController'
+
 
 // CONTROLLER SITES TOURISTIQUES
      /**
@@ -57,6 +71,7 @@ class UserController extends AbstractController
 
         $formSite= $this->createForm(SiteTouristiqueType::class, $site);
 
+
         $formSite->handleRequest($request);
 
         if($formSite->isSubmitted() && $formSite->isValid()) 
@@ -92,4 +107,5 @@ class UserController extends AbstractController
     }
 
     
-}
+    
+}//fin class

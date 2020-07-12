@@ -30,7 +30,7 @@ class SitesTouristiquesFixture extends Fixture
                    ->setPhone($faker->e164PhoneNumber)
                    ->setMail($faker->email)
                    ->setNationality($faker->city)
-                   ->setRoles($faker->randomElement($array = array ('Admin','Professionnel','Visiteur')))
+                   ->setRoles($faker->randomElement($array = array(['ROLE_ADMIN'],['ROLE_PRO'],['ROLE_USER]'])))
                    ->setPassword($faker->password);
  
              $manager->persist($user);

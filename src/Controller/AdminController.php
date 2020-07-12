@@ -24,6 +24,8 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+
 // CONTROLLER SITES TOURISTIQUES
 
     /**
@@ -136,6 +138,7 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_comments');
     }
+
 
 
 }
