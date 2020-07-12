@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\SiteTouristique;
+use App\Form\SiteTouristiqueType;
 use App\Repository\CommentRepository;
-use App\Repository\SiteTouristiqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\BrowserKit\Request;
+use App\Repository\SiteTouristiqueRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -22,6 +23,8 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
+// CONTROLLER SITES TOURISTIQUES
 
     /**
      * @Route("/admin/admin_sites_touristiques", name="admin_sites_touristiques")
@@ -46,6 +49,44 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/site_touristique/new", name="admin_new_site")
+     * @Route("/admin/{id}/edit_site_touristique", name="admin_edit_site")
+     */
+    public function editSite(SiteTouristique $site = null, Request $request, EntityManagerInterface $manager)
+    {
+        dump($site);
+
+        if(!$site)
+        {
+            $site = new SiteTouristique;
+        }
+
+        $formSite = $this->createForm(SiteTouristiqueType::class, $site);
+
+        $formSite->handleRequest($request);
+
+        if($formSite->isSubmitted() && $formSite->isValid()) 
+        {   
+            if(!$site->getId())
+            // {
+            //     $article->setCreatedAt(new \DateTime);
+            // }
+
+            $manager->persist($site);  
+            $manager->flush(); 
+
+            $this->addFlash('success', 'Les modifications ont bien été enregistrées de la BDD!');
+
+            return $this->redirectToRoute('admin_sites_touristiques');
+        }
+
+        return $this->render('admin/admin_edit_site_touristique.html.twig', [
+            'formSite' => $formSite->createView(),
+            'editMode' => $site->getId() !== null
+        ]);
+    }
+
+    /**
      * @Route("admin/{id}/delete-site_touristique", name="admin_delete_site")
      */
     public function deleteSite(SiteTouristique $site_touristique, EntityManagerInterface $manager)
@@ -58,6 +99,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_sites_touristiques');
     }
 
+// CONTROLLER COMMENTAIRES
 
      /**
      * @Route("/admin/comments", name="admin_comments")

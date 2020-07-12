@@ -17,6 +17,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 class UserController extends AbstractController
 {
+
+// CONTROLLER SITES TOURISTIQUES
      /**
       * @Route("/user", name="user")
       */
@@ -53,11 +55,11 @@ class UserController extends AbstractController
             $site = new SiteTouristique;
         }
 
-        $form_siteTouristique= $this->createForm(SiteTouristiqueType::class, $site);
+        $formSite= $this->createForm(SiteTouristiqueType::class, $site);
 
-        $form_siteTouristique->handleRequest($request);
+        $formSite->handleRequest($request);
 
-        if($form_siteTouristique->isSubmitted() && $form_siteTouristique->isValid()) 
+        if($formSite->isSubmitted() && $formSite->isValid()) 
         {   
             if(!$site->getId());
             
@@ -70,7 +72,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/user_edit_site_touristique.html.twig', [
-            'formSite' => $form_siteTouristique->createView(),
+            'formSite' => $formSite->createView(),
             'editMode' => $site->getId() !== null
         ]);
     }

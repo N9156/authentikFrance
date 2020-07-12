@@ -15,8 +15,9 @@
         <a class="dropdown-item" href="{{ path('authentik_liste', {'id': data.id }) }}">{{ data.title }}</a>
     {% endfor %}
   </div>
-  
 </div>
+
+<h5 class="mx-auto m3">Il y a {{ category_liste|length }} Sites Touristiques à consulter dans la categorie {{ category_title.title}} !  </h5>
 
 <div class="row d-flex justify-content-around">
 
