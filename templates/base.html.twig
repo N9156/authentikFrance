@@ -33,6 +33,10 @@
             <span class="navbar-brand mb-0 h1"><strong>Destination Région Bretagne 🐟</strong></span>
             <div class="topnav" id="myTopnav">
             <strong><a href="{{ path('authentik') }}" class="active">Liste des sites touristiques /</a></strong>
+            {# pour le professionnel qui se connecte #}
+            <strong><a href="{{ path('user') }}" class="active">Gestion des Sites touristiques /</a></strong> 
+            {# pour le admin que se connecte #}
+            <strong><a href="{{ path('admin') }}" class="active">BACKOFFICE /</a></strong> 
             <strong><a href="#news">Création d'un utilisateur /</a></strong>
             <strong> <a href="#about">Connexion /</a></strong>
             <strong><a href="#about">Déconnexion</a></strong>

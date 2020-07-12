@@ -39,8 +39,8 @@ class AuthentikController extends AbstractController
         $cat = $repoCat->findAll();
         $sites = $repo->findAll();
     
-        // dump($sites);
-        // dump($cat);
+         dump($sites);
+         dump($cat);
 
         return $this->render('authentik/index.html.twig', [
          'sites' => $sites,
@@ -64,7 +64,8 @@ class AuthentikController extends AbstractController
 
         return $this->render('authentik/sitesxcategory.html.twig', [
             'category' => $cat,
-            'category_liste' => $site
+            'category_liste' => $site,
+            'category_title'=> $category
             ]);
     }
 

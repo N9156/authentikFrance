@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Category;
 use App\Entity\SiteTouristique;
 use Symfony\Component\Form\AbstractType;
@@ -23,12 +24,16 @@ class SiteTouristiqueType extends AbstractType
             ->add('mail')
             ->add('contactProfessionnel')
             ->add('url')
-            ->add('publication', FileType::class,['required' => false])
+            ->add('publication')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id'
+                'choice_label' => 'title'
             ])
-            ->add('user')
+            
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'userlastname'
+            ])
         ;
     }
 

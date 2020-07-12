@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1 class="display-4 text-center my-4">BACKOFFICE | Gestion des commentaires</h1>
+    <h3 class="display-4 text-center my-4">BACKOFFICE | Gestion des commentaires</h3>
 
     {% for message in app.flashes('success') %}
     <div class="col-md-5 mt-4 mx-auto alert alert-success text-center">
@@ -12,9 +12,9 @@
     </div>
     {% endfor %}
 
-    <a href="{{ path('admin') }}" class="btn btn-info btn-sm mb-2">Retour au BACKOFFICE</a>
+    <a href="{{ path('admin') }}" class="btn btn-info btn-sm mb-2"><i class="fas fa-reply"> Retour au BACKOFFICE</i></a>
 
-    <h3 class="mx-auto m3">{{ comments|length }} Commentaires</h3>
+    <h4 class="mx-auto m3">{{ comments|length }} Commentaires</h4>
 
     <table class="table table-bordered text-center">
 
