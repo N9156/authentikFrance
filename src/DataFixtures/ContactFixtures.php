@@ -23,7 +23,7 @@ class ContactFixtures extends Fixture
             
             $contact->setFirstname($faker->username())
                     ->setLastname($faker->lastName())                         
-                    ->setPhone($faker->phoneNumber)
+                    ->setPhone(0606060606)
                     ->setEmail($faker->email)
                     ->setMessage($faker->text($maxNbChars = 200));
   

@@ -16,4 +16,18 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+    /*
+    /**
+     * @Route("/admin/)
+     */
+    /*public function affichuser(UserRepository $repo)//injection de dependance
+    {
+        $users=$repo->findAll();
+        dump($articles);
+
+        return $this->render('admin/affuser.html.twig',[
+            'controller_name' => 'AdminController',
+            'utilisateurs' =>$users
+        ]);
+    }//fin affichuser*/
 }

@@ -24,20 +24,26 @@
             <!-- Fav and touch icons -->
     
         {% endblock %}
-    </head>
-    <body>
-        <header>    
-            <!-- PETITE NAVBAR -->
-            <!-- As a heading -->
-
+   
+         
     <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1"><strong>Destination Région Bretagne 🐟</strong></span>
             <div class="topnav" id="myTopnav">
 
                 <a href="{{ path('authentik') }}" class="active">Liste des sites touristiques /</a>
-                <strong><a href="#news">Création d'un utilisateur /</a></strong>
-                <strong> <a href="#about">Connexion /</a></strong>
-                    <strong><a href="#about">Déconnexion</a></strong>
+                {# SI l'insternaute N'EST PAS connecté, on lui propose les liens 'Créer votre compte' et 'Identifiez-vous' #}
+                {% if not  app.user %}
+                <strong><a href="{{ path('authentik_create') }}">Création d'un utilisateur /</a></strong>
+                <strong> <a href="{{ path('authentik_login') }}">Connexion /</a></strong>
+                {% endif %}
+
+                {# Si l'utilisateur a un ROLE_ADMIN en BDD , on met dans le if donne acces au back office à l'administrateur #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <strong><a href="{{ path('admin') }}">BackOffice</a></strong>
+                {% endif %}
+                {% if app.user %}
+                <strong><a href="{{ path('authentik_logout') }}">Déconnexion</a></strong>
+                {% endif %}
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                   <i class="fa fa-bars"></i>
                 </a>
@@ -45,7 +51,7 @@
                      
     </nav>
             <!-- End main navigation -->
-        </header>
+        </head>      
 
         <div class="container mon-conteneur">
         {% block body %}
@@ -58,7 +64,7 @@
 
             <p> &copy; 2020 - Soutenance WB3 - Groupe 2 - La Super TEAM !!! (｡◕‿◕｡) </
             <p>...EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
-            <p>...EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
+            
             <div id="sfc3erf3jcxtrxbcxc4dw1j1rrx5t78wuap"></div>
             
            
