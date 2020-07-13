@@ -55,6 +55,8 @@ class AuthentikController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
+                    dump($contact);
+                    dump($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -86,7 +88,6 @@ class AuthentikController extends AbstractController
             'site' => $site
         ]);
     }
-
     
   
 //     /**
@@ -107,5 +108,4 @@ class AuthentikController extends AbstractController
 //     }
 
 }
-
 

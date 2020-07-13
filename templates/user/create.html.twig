@@ -5,7 +5,7 @@
 
 {% block body %}
 
-    <h1>Creation votre compte Visiteur ou Professionnel</h1>
+    <h1>Création de votre compte Visiteur ou Professionnel</h1>
     {% form_theme formUser 'bootstrap_4_layout.html.twig' %}
 
 
@@ -26,6 +26,8 @@
         {{ form_row(formUser.confirm_password,{'label': "Confirmez votre mot de passe",'attr':{'placeholder':"Confirmez le mot de passe "}}) }}
         <button type="submit" class="btn btn-info">Validez votre compte</button>
   {{ form_end(formUser) }}
+
+
 
 
 {% endblock body %}
