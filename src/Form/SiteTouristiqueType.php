@@ -18,7 +18,8 @@ class SiteTouristiqueType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('image')
+            //->add('image')
+            ->add('imageFile', FileType::class,['required' => false])
             ->add('adress')
             ->add('phone')
             ->add('mail')
@@ -29,7 +30,8 @@ class SiteTouristiqueType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
-            
+
+            // ->add('user')
             ->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'userlastname'

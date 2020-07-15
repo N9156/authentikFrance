@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Repository\SiteTouristiqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SiteTouristiqueRepository::class)
+ * @Vich\Uploadable
  */
 class SiteTouristique
 {
@@ -33,6 +37,12 @@ class SiteTouristique
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+     /**
+    * @Vich\UploadableField(mapping="sites_image", fileNameProperty="image")
+    */
+    private $imageFile;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -81,6 +91,11 @@ class SiteTouristique
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -120,9 +135,25 @@ class SiteTouristique
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+
+        if($this->imageFile instanceof UploadedFile){
+            $this->updatedAt = new \DateTime('now');
+        }
 
         return $this;
     }
@@ -250,6 +281,18 @@ class SiteTouristique
                 $comment->setSiteTouristiques(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

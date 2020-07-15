@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formCategory 'bootstrap_4_layout.html.twig' %}
+
+{% block title %} BACKOFFICE | Gestion des Catégories {% endblock %}
+
+{% block body %}
+ 
+    <h2 class="text-center my-4">
+    {% if editMode %}
+        BACKOFFICE | Modification des Catégories <a href="{{ path('admin_category') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Categories</i></a>
+    {% else %}
+        BACKOFFICE | Poster une nouvelle catégorie <a href="{{ path('admin_category') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Categories</i></a>
+    {% endif %}
+    </h2>
+    <hr>
+
+    {{ form_start(formCategory, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
+
+        {{ form_row(formCategory.title, { 'attr': {'placeholder': "Titre de la catégorie"} }) }}
+        {{ form_row(formCategory.description|raw , { 'attr': {'placeholder': "Description de la catégorie", "rows":15} }) }}
+
+        <button type="submit" class="btn btn-info mb-4">
+        {% if editMode %}
+            Enregistrer les modifications
+        {% else %}
+            Ajouter la categorie
+        {% endif %}
+        </button>
+
+    {{ form_end(formCategory) }}
+
+{% endblock %}

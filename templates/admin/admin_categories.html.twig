@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BackOffice | Gestion des Cateogries{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center my-4">BACKOFFICE | Gestion des Catégories</h2>
+    <hr>
+    <a href="{{ path('admin') }}" class="btn btn-info btn-sm mb-2"><i class="fas fa-reply"> Retour au BACKOFFICE</i></a>
+
+    {% for message in app.flashes('success') %}
+        <div class="col-md-5 mt-4 mx-auto alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('admin_new_category') }}" class="btn btn-info btn-sm mb-2"><i class="fas fa-plus-circle"> Créer une nouvelle Catégorie</i></a>
+
+    <table class="table table-bordered text-center">
+
+        <tr>
+        {% for data in colonnes %}
+
+            {% if data != 'id' %} 
+                <th>{{ data }}</th>
+            {% endif %}
+
+        {% endfor %}
+        </tr>
+
+        {% for data in category %}
+
+            <tr>
+                <td class="align-middle">{{ data.title|raw }}</td>
+                <td class="align-middle">{{ data.description|raw }}</td>
+
+                <td class="align-middle"><a href="{{ path('admin_edit_category', {'id': data.id}) }}" class="btn btn-outline-warning" onclick="return(confirm('Voulez-vous faire des modifications à la Catégorie ?'))"><i class="fas fa-pencil-alt"></i></a></td>
+                <td class="align-middle"><a href="{{ path('admin_delete_category', {'id': data.id}) }}" class="btn btn-outline-danger"  onclick="return(confirm('Voulez-Vous supprimer définitivement cette Catégorie ?'))"><i class="fas fa-trash"></i></a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

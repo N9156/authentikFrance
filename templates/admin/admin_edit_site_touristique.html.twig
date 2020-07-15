@@ -6,19 +6,26 @@
 
 {% block body %}
 
+
     <h1 class="display-4 text-center my-4">
+
     {% if editMode %}
         BACKOFFICE | Modification du Site Touristique <a href="{{ path('admin_sites_touristiques') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% else %}
         BACKOFFICE | Poster un nouveau Site Touristique <a href="{{ path('admin_sites_touristiques') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% endif %}
+
     </h1>
+
 
     {{ form_start(formSite, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
 
         {{ form_row(formSite.title, { 'attr': {'placeholder': "Titre du Site"} }) }}
-        {{ form_row(formSite.content, { 'attr': {'placeholder': "Contenu de l'article", "rows": 15} }) }}
-        {{ form_row(formSite.image, { 'attr': {'placeholder': "URL de l'image"} }) }}
+
+        {{ form_row(formSite.content|raw , { 'attr': {'placeholder': "Contenu du Site", "rows":15} }) }}
+        {{ form_row(formSite.imageFile, { 'attr': {'placeholder': "Insérer une image"} }) }}
+        {# .image #}
+
         {{ form_row(formSite.adress, { 'attr': {'placeholder': "Adress du Site"} }) }}
         {{ form_row(formSite.phone, { 'attr': {'placeholder': "Phone du Site"} }) }}
         {{ form_row(formSite.mail, { 'attr': {'placeholder': "E-mail du Site"} }) }}

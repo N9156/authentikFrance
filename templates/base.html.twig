@@ -38,15 +38,23 @@
                 {% endif %}
 
                 {# Si l'utilisateur a un ROLE_ADMIN en BDD , on met dans le if donne acces au back office à l'administrateur #}
-                {% if is_granted('ROLE_ADMIN') %}
-                <strong><a href="{{ path('admin') }}">BackOffice</a></strong>
-                {% endif %}
+
+                {# {% if is_granted('ROLE_ADMIN') %} #}
+                <strong><a href="{{ path('admin') }}">BackOffice /</a></strong>
+                {# {% endif %} #}
+
+                {# {% if is_granted('ROLE_PRO') %} #}
+                <strong><a href="{{ path('user') }}">Gestion de mes Sites Touristiques /</a></strong>
+                {# {% endif %} #}
+
                 {% if app.user %}
                 <strong><a href="{{ path('authentik_logout') }}">Déconnexion</a></strong>
                 {% endif %}
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                
+                {# <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                   <i class="fa fa-bars"></i>
-                </a>
+                </a> #}
+
               </div>
 
    

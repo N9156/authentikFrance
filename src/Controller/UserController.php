@@ -23,7 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
 
-   
+
 
 // CONTROLLER SITES TOURISTIQUES
      /**
@@ -57,6 +57,10 @@ class UserController extends AbstractController
     {
         dump($site);
 
+       // $lastUsername = $authenticationUtils->getLastUsername(); + , AuthenticationUtils $lastUsername, $authenticationUtils EN METHODE
+        
+        //dump($lastUsername);
+
         if(!$site)
         {
             $site = new SiteTouristique;
@@ -70,6 +74,8 @@ class UserController extends AbstractController
         if($formSite->isSubmitted() && $formSite->isValid()) 
         {   
             if(!$site->getId());
+
+           // $site->setUser($lastUsername);  SETTER USERNAME!
             
             $manager->persist($site);  
             $manager->flush(); 

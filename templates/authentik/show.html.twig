@@ -27,8 +27,10 @@
 
     <div>
 
-    <h3>Quel est votre commentaire?</h3>
-
+<div class="card border-info mb-3">
+ {# {% if app.user %} VISIBLE SI EST CONNECTé #} 
+    <div class="card-header"><h4>Quel est votre commentaire?</h4></div>
+        
     {# New commentaire #}
 
         {% for message in app.flashes('success') %}
@@ -37,15 +39,15 @@
             {{ message }}
         </div>
 
-    {% endfor %}
+        {% endfor %}
 
-    <div>
+    <div class="card-body">
 
         {{ form_start(formComment, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
 
-        {{ form_row(formComment.author, { 'label': 'Votre prénom','attr': { 'placeholder': "Mmme/M..." } }) }}
+        {{ form_row(formComment.author, { 'label': 'Votre prénom','attr': { 'placeholder': "Mme / M ..." } }) }}
 
-        {{ form_row(formComment.content, { 'label': 'Votre commentaire','attr': { 'placeholder': "Excellent rapport qualité/prix... service impeccable...","rows": 7 } }) }}
+        {{ form_row(formComment.content, { 'label': 'Votre commentaire','attr': { 'placeholder': "Excellent rapport qualité / prix... service impeccable...","rows": 7 } }) }}
             
             <button type="submit" class="btn btn-info"><i class="far fa-comments">Envoyez votre commentaire</i></button>
 
@@ -54,6 +56,10 @@
     <p class="text-danger" style="font-size: 14px"><i class="fas fa-exclamation-circle">Les commentaires inappropriés (racistes, agressifs, homophobes...) seront supprimés</i></p>
 
     </div>
+
+{# {% endif %} #}
+
+</div>
 
 {# Liste des articles #}
 
