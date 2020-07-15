@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-             <title>Bienvenue en Bretagne !</title>
-             <link rel="shortcut icon" type="image/PNG" href="image/LOGO_projetco.PNG">
+{% extends 'base.html.twig' %}
+
 
            
-        {% block stylesheets %}
-            
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-               
-    
-            <!--[if IE 7]>
-            <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <![endif]-->
-       
-       
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-            <link rel="icon" type="image.png" href"image/LOGO_projetco.PNG">
-                        
-            <!-- Fav and touch icons -->
-         {% endblock %}
-    </head>
+   
         
-    <body>      
+{% block body %}    
             <div class="row">
                 <div class="container">
         <img src="{{ asset('image/LOGO_projetco.PNG') }}" width="450" height="450" alt="Logo" class="img-responsive center-block md-col-4 float-left">
@@ -415,9 +394,9 @@
 </strong></center>
 
 
-</body> 
+{% endblock body %}
 
-</html>
+
 
 
    

@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+
+use App\Entity\User;
+use App\Form\UserType;
 use App\Entity\SiteTouristique;
 use App\Form\SiteTouristiqueType;
 use App\Repository\UserRepository;
@@ -14,9 +17,24 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
+
+   /**
+     * @Route("/user", name="user")
+     */
+    public function user()
+    {
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController'
+        ]);
+    }
+
+
+// CONTROLLER SITES TOURISTIQUES
      /**
       * @Route("/user", name="user")
       */
@@ -48,18 +66,25 @@ class UserController extends AbstractController
     {
         dump($site);
 
+       // $lastUsername = $authenticationUtils->getLastUsername(); + , AuthenticationUtils $lastUsername, $authenticationUtils EN METHODE
+        
+        //dump($lastUsername);
+
         if(!$site)
         {
             $site = new SiteTouristique;
         }
 
-        $form_siteTouristique= $this->createForm(SiteTouristiqueType::class, $site);
+        $formSite= $this->createForm(SiteTouristiqueType::class, $site);
 
-        $form_siteTouristique->handleRequest($request);
 
-        if($form_siteTouristique->isSubmitted() && $form_siteTouristique->isValid()) 
+        $formSite->handleRequest($request);
+
+        if($formSite->isSubmitted() && $formSite->isValid()) 
         {   
             if(!$site->getId());
+
+           // $site->setUser($lastUsername);  SETTER USERNAME!
             
             $manager->persist($site);  
             $manager->flush(); 
@@ -70,7 +95,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/user_edit_site_touristique.html.twig', [
-            'formSite' => $form_siteTouristique->createView(),
+            'formSite' => $formSite->createView(),
             'editMode' => $site->getId() !== null
         ]);
     }
@@ -90,4 +115,5 @@ class UserController extends AbstractController
     }
 
     
-}
+    
+}//fin class

@@ -1,26 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme formSite 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}| Gestion des Sites Touristiques{% endblock %}
 
 {% block body %}
 
-    <h1 class="display-4 text-center my-4">
+    <h2 class="text-center my-4">
     {% if editMode %}
-         Modification du Site Touristique <a href=" " class="btn btn-dark btn-sm">Retour</a>
+        Modification du Site Touristique 
+        <a href="{{ path('user') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% else %}
-         Poster un nouveau Site Touristique <a href=" " class="btn btn-dark btn-sm">Retour</a>
+        Poster un nouveau Site Touristique 
+        <a href="{{ path('user') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% endif %}
-    </h1>
+    </h2>
+    <hr>
 
     {{ form_start(formSite, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
 
         {{ form_row(formSite.title, { 'attr': {'placeholder': "Titre du Site"} }) }}
-        {{ form_row(formSite.content, { 'attr': {'placeholder': "Contenu de l'article", "rows": 15} }) }}
-        {{ form_row(formSite.imageFile, { 'attr': {'placeholder': "URL de l'image"} }) }}
+        {{ form_row(formSite.content|raw , { 'attr': {'placeholder': "Contenu du Site", "rows": 15} }) }}
+        {{ form_row(formSite.imageFile, { 'attr': {'placeholder': "Insérer une image"} }) }} 
+        {# .image #}
         {{ form_row(formSite.adress, { 'attr': {'placeholder': "Adress du Site"} }) }}
         {{ form_row(formSite.phone, { 'attr': {'placeholder': "Phone du Site"} }) }}
         {{ form_row(formSite.mail, { 'attr': {'placeholder': "E-mail du Site"} }) }}
         {{ form_row(formSite.contactProfessionnel, { 'attr': {'placeholder': "Nom et Prenom du contact"} }) }}
+        {{ form_row(formSite.url, { 'attr': {'placeholder': "URL du Site"} }) }}
         {{ form_row(formSite.publication) }}
         {{ form_row(formSite.category) }}
         {{ form_row(formSite.user, { 'attr': {'placeholder': " "} }) }}
@@ -29,10 +36,10 @@
         {% if editMode %}
             Enregistrer les modifications
         {% else %}
-            Ajouter l'article
+            Ajouter le Site Touristique
         {% endif %}
         </button>
 
-    {{ form_end(formEdit) }}
+    {{ form_end(formSite) }}
 
 {% endblock %}
