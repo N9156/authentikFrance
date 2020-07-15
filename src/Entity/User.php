@@ -6,11 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * 
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -50,17 +54,18 @@ class User
     private $town;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=10)
      */
     private $postcode;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $mail;
 
@@ -69,15 +74,24 @@ class User
      */
     private $nationality;
 
+
+
     /**
      * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
+     * @Assert\EqualTo(propertyPath="confirm_password", message="Les mots de passe ne correspondent pas")
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas")
+     */
+    public $confirm_password;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users", orphanRemoval=true)
@@ -223,16 +237,18 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles()
     {
         return $this->roles;
+        //retourne les roles de la bdd
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
+        //renvoie un tableau
     }
 
     public function getPassword(): ?string
@@ -246,6 +262,16 @@ class User
 
         return $this;
     }
+
+    public function getSalt()
+    {
+        
+    }
+    public function eraseCredentials()
+    {
+        
+    }
+
 
     /**
      * @return Collection|Comment[]

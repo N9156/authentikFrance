@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        sites_image:
+            uri_prefix: /image/sites_touristiques
+            upload_destination: '%kernel.project_dir%/public/image/sites_touristiques'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
