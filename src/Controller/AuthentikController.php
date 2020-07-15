@@ -11,7 +11,7 @@ use App\Entity\Category;
 use App\Form\CommentType;
 use App\Form\ContactType;
 use App\Entity\SiteTouristique;
-// use App\Repository\UserRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -157,8 +157,7 @@ class AuthentikController extends AbstractController
 
         //permet de récuperer le dernier username (email) que l'internaute a saisie dans le formulaire de connexion en cas d'erreur de connexion
         $lastUsername = $authenticationUtils->getLastUsername();
-      
-        
+
         return $this->render('authentik/login.html.twig',[
                 'last_username' => $lastUsername, //on envoie le message d'erreur et le dernier email saisie sur le template
                 'error' => $error

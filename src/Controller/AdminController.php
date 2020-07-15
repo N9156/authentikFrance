@@ -78,7 +78,9 @@ class AdminController extends AbstractController
             $manager->persist($site);  
             $manager->flush(); 
 
+
             $this->addFlash('success', 'Les modifications ont bien été enregistrées dans la BDD !');
+
 
             return $this->redirectToRoute('admin_sites_touristiques');
         }
@@ -102,6 +104,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_sites_touristiques');
     }
 
+// CONTROLLER COMMENTAIRES
 
 // CONTROLLER CATEGORIES
 
@@ -222,6 +225,7 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_comments');
     }
+
 
 }
 

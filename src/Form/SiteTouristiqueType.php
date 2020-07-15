@@ -30,8 +30,8 @@ class SiteTouristiqueType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
+
             // ->add('user')
-            
             ->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'userlastname'

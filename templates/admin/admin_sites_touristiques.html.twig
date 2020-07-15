@@ -45,8 +45,10 @@
                 <td class="align-middle">{{ data.url|raw }}</td>
                 <td class="align-middle">{{ data.publication|raw }}</td>
 
+
                 <td class="align-middle"><a href="{{ path('admin_edit_site', {'id': data.id}) }}" class="btn btn-outline-warning" onclick="return(confirm('Voulez-vous faire des modifications au site touristique ?'))"><i class="fas fa-pencil-alt"></i></a></td>
                 <td class="align-middle"><a href="{{ path('admin_delete_site', {'id': data.id}) }}" class="btn btn-outline-danger"  onclick="return(confirm('Voulez-Vous supprimer définitivement ce site touristique ?'))"><i class="fas fa-trash"></i></a></td>
+
             </tr>
         {% endfor %}
 

@@ -88,6 +88,11 @@ class User implements UserInterface
      */
     private $password;
 
+        /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas")
+     */
+    public $confirm_password;
+
     /**
      * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne correspondent pas")
      */
