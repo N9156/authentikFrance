@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Notification\ContactNotification;
 use Doctrine\Persistance\ManagerRegistry;
 use App\Repository\SiteTouristiqueRepository;
-use App\Repository\UserRepository;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -128,7 +128,7 @@ class AuthentikController extends AbstractController
             //$data = $request->$form->getRoles();
             /*dump($data);*/
 
-            //$user->setRoles([][]);
+            //$user->setRoles(["ROLE_USER"]);
             //$data['roles'];
 
             $hash = $encoder->encodePassword($user, $user->getPassword());
@@ -136,9 +136,9 @@ class AuthentikController extends AbstractController
             
            $manager->persist($user);
            $manager->flush();
-           //dump($user);
+        //    dump($request);
            $this->addFlash('success','Félicitations !! Vous êtes maintenant inscrit, vous pouvez maintenant vous connecter.');
-           //return $this->redirectToRoute('security_login');//pour rediriger apres inscription vers la page connexion
+           return $this->redirectToRoute('authentik_login');//pour rediriger apres inscription vers la page connexion
 
         }//fin if
         return $this->render('authentik/create.html.twig', [
@@ -171,7 +171,7 @@ class AuthentikController extends AbstractController
     public function logout()
     {
         //cette methode ne retourne rien, il nous suffit d'avoir une route pour la deconnexion
-    }//fin logout
+    }//fin logout*/
 
 
     // show() 

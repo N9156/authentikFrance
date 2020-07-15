@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BACKOFFICE| Gestion des Contacts{% endblock %}
+
+{% block body %}
+<h1 class="display-4 text-center my-4">GESTION DES CONTACTS</h1>
+
+<table class="table table-bordered text-cente">
+
+    <tr>
+    {# on boucle sur les colonnes récupérer en BDD et envoyé par le controller 'AdminContrller' #}
+    {# 'colonnes' -> variables contenant les noms des colonnes de table 'Article' qui proviennent du controller 'AdminController' #}
+    {# 'data' receptionne une colonne par tour de boucle FOR #}
+    {% for data in colonnes %}
+
+        {% if data != 'id' %}
+            <th>{{ data }}</th>
+        {% endif %}
+    {% endfor %}  
+            <th>Supprimer</th>
+    </tr>
+
+    {% for data in contacts %}
+
+        <tr>
+            <td>{{ data.firstname }}</td>
+            <td>{{ data.lastname }}</td>
+            <td>{{ data.phone }}</td>
+            <td>{{ data.email}}</td>
+            <td>{{ data.message }}</td>
+            <td><a href="" class="btn btn-danger"><i class="far fa-trash-alt"></i></a></td>
+            
+
+        </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}
