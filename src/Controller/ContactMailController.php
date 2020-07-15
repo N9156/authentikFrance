@@ -16,7 +16,7 @@ class ContactMailController extends AbstractController
         $contacts = $repo->findAll();
 
         dump($contacts);
-
+        /*On stocke le contact dans la session*/
         return $this->render('contact_mail/index.html.twig', [
             'contacts' => $contacts
         ]);
