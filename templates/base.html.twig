@@ -27,9 +27,14 @@
    
          
     <nav class="navbar navbar-light bg-light">
+            
+         <a class="navbar-brand" href="{{ path('authentik') }}">
+            <img src="image/Logo AuthentikFrance.png" width="50" height="50" alt="">
+         </a>
+          
             <span class="navbar-brand mb-0 h1"><strong>Destination Région Bretagne 🐟</strong></span>
-            <div class="topnav" id="myTopnav">
 
+            <div class="topnav" id="myTopnav">
                 <a href="{{ path('authentik') }}" class="active">Liste des sites touristiques /</a>
                 {# SI l'insternaute N'EST PAS connecté, on lui propose les liens 'Créer votre compte' et 'Identifiez-vous' #}
                 {% if not  app.user %}
