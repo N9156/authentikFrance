@@ -66,9 +66,10 @@ class SitesTouristiquesFixture extends Fixture
                       ->setContactProfessionnel($faker->lastname)
                       ->setUrl($faker->url)
                       ->setPublication($faker->randomElement($array = array ('0','1')))
+                      ->setUpdatedAt($faker->dateTime($max = 'now', $timezone = null))
                       ->setUser($user)
                       ->setCategory($category);
-                         
+                      
                  $manager->persist($site); 
                  
 

@@ -4,7 +4,9 @@
 
 {% block body %}
 
-    <h3 class="display-4 text-center my-4">BACKOFFICE | Gestion des commentaires</h3>
+
+    <h2 class="text-center my-4"> BACKOFFICE | Gestion des commentaires</h2>
+    <hr>
 
     {% for message in app.flashes('success') %}
     <div class="col-md-5 mt-4 mx-auto alert alert-success text-center">
@@ -39,7 +41,7 @@
 
                 <td class="align-middle">{{ data.createdAt|date("d/m/Y à H:i:s") }}</td>
 
-                <td class="align-middle"><a href="{{ path('admin_delete_comment', {'id': data.id}) }}" class="btn btn-outline-danger" onclick="return(confirm('En êtes vous certain ?'))"><i class="fas fa-trash"></i></a></td>
+                <td class="align-middle"><a href="{{ path('admin_delete_comment', {'id': data.id}) }}" class="btn btn-outline-danger" onclick="return(confirm('Voulez-Vous supprimer définitivement ce commentaire ??'))"><i class="fas fa-trash"></i></a></td>
             </tr>
         {% endfor %}
 
