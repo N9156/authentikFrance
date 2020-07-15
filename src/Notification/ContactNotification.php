@@ -25,11 +25,11 @@ class ContactNotification
 
     public function notify(Contact $contact)
     {
-        $message = (new \Swift_Message('Message : ' . $contact->getMessage()))
+        $message = (new \Swift_Message('Authentikfrance'))
                 ->setFrom($contact->getEmail())
                 ->setTo('virginie.allaghenkhaldi@gmail.com')
                 ->setReplyTo($contact->getEmail())
-                ->setBody($this->renderer->render('emails/contact.html.twig', [
+                ->setBody($this->renderer->render('email/contact.html.twig', [
                 'contact' => $contact
                 ]), 'text/html');
                 

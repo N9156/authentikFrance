@@ -10,8 +10,6 @@
             <h2 class="text-center">{{ site.title }}</h2>
         </div>
 
-
-
         <div class="card-body">
             <img src="{{ site.image|replace({"200": "640/480"}) }}" class="card-img-top rounded-pill" alt="{{ site.title }}">
                 
@@ -31,9 +29,29 @@
 
     </div>
 
-    <h3>Quel est votre commentaire?</h3>
 
-        {% for comits in site.comments %}
+    <h3>Quel est votre commentaire ? ({{ article.commentaires|length }})</h3>
+       
+    {% for commentaire in article.commentaires %}
+            <p> Publié par {{commentaire.pseudo }}</p>
+             <div>{{ commentaire.contenu }}</div>
+
+        {% else %}
+        <p>Il n'y a pas encore de commentaire</p>
+        {% endfor %}
+
+
+        <h3>{% trans %}What is your comments{% endtrans %} ({{ article.commentaires|length }})</h3>
+        
+        {% for commentaire in article.commentaires %}
+            <p>{% trans %}Published by{% endtrans %} {{commentaire.pseudo }}</p>
+            <div>{{ commentaire.contenu }}</div>
+        
+            {% else %}
+            <p>{% trans %}There's no comment yet{% endtrans %}</p>
+        {% endfor %}
+
+
 
                 <div class="row border rounded mb-2 bg-info text-white">
                     <div class="col-md-4">
@@ -45,7 +63,12 @@
                     </div>
                 </div>
 
-        {% endfor %}
+       
 
-
+    {% for locale in locales %}
+            {% if locale != app.request.locale %}
+            <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
+            {% endif %}
+    {% endfor %}
+    
 {% endblock %}

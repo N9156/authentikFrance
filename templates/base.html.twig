@@ -1,6 +1,17 @@
 <!DOCTYPE html>
-<html>
-    <head>
+
+<html lang="{{ app.request.locale }}">
+
+                {% for locale in locales %}
+        
+            {% if locale != app.request.locale %}
+    <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
+
+            {% endif %}
+            
+            {% endfor %}
+    
+<head>
 
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
              <title>Bienvenue en Bretagne !</title>
@@ -8,8 +19,7 @@
 
         {% block stylesheets %}
             
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,9 +30,7 @@
             <link rel="stylesheet" type="text/css" href="css/style.css" />
         <![endif]-->
        
-        <link rel="stylesheet" type="text/css" href="css/jquery.cslider.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css" />
-
+        
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="icon" type="image.png" href"image/LOGO_projetco.PNG">
                         
@@ -47,15 +55,28 @@
                   <i class="fa fa-bars"></i>
                 </a>
               </div>
-                     
+            
     </nav>
+
+
             <!-- End main navigation -->
-        </header>
+      
+        
+
+</header>
+
 
         <div class="container mon-conteneur">
         {% block body %}
 
+        {% for locale in locales %}
+        {% if locale != app.request.locale %}
+            <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
+        {% endif %}
+    {% endfor %}
+
         {% endblock %}
+
         </div>
         
 
