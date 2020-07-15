@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BackOffice | Gestion des Sites Touristiques{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center my-4">BACKOFFICE | Gestion des Sites Touristiques</h2>
+    <hr>
+
+    {% for message in app.flashes('success') %}
+
+        <div class="col-md-5 mt-4 mx-auto alert alert-success text-center">
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+    <a href="{{ path('admin') }}" class="btn btn-info btn-sm mb-2"><i class="fas fa-reply"> Retour au BACKOFFICE</i></a>
+
+    <a href="{{ path('admin_new_site') }}" class="btn btn-info btn-sm mb-2"><i class="fas fa-plus-circle"> Créer un nouveau Site Touristique</i></a>
+
+    <table class="table table-bordered text-center">
+
+        <tr>
+        {% for data in colonnes_sites %}
+
+            {% if data != 'id' %} 
+                <th>{{ data }}</th>
+            {% endif %}
+
+        {% endfor %}
+        </tr>
+
+        {% for data in comments_sites %}
+
+            <tr>
+                {# <td class="align-middle">{{ data.id }}</td> #}
+                <td class="align-middle">{{ data.title|slice(0,10)|raw }}</td>
+                <td class="align-middle">{{ data.content|slice(0,30)|raw}}</td>
+                <td class="align-middle">{{ data.image|raw }}</td>
+                <td class="align-middle">{{ data.adress|raw }}</td>
+                <td class="align-middle">{{ data.phone|raw }}</td>
+                <td class="align-middle">{{ data.mail|raw }}</td>
+                <td class="align-middle">{{ data.contactProfessionnel|raw }}</td>
+                <td class="align-middle">{{ data.url|raw }}</td>
+                <td class="align-middle">{{ data.publication|raw }}</td>
+
+
+                <td class="align-middle"><a href="{{ path('admin_edit_site', {'id': data.id}) }}" class="btn btn-outline-warning" onclick="return(confirm('Voulez-vous faire des modifications au site touristique ?'))"><i class="fas fa-pencil-alt"></i></a></td>
+                <td class="align-middle"><a href="{{ path('admin_delete_site', {'id': data.id}) }}" class="btn btn-outline-danger"  onclick="return(confirm('Voulez-Vous supprimer définitivement ce site touristique ?'))"><i class="fas fa-trash"></i></a></td>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

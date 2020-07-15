@@ -16,7 +16,7 @@
                          <h5>Pour entrer en contact avec l'équipe d'authentikFrance, remplissez ce formulaire...</h5>
                        
                             <p>Si vous souhaitez communiquer sur authentikFrance, utilisez notre formulaire de contact</p>
-                           
+                         <p> test github apres copie sauvegarde du 080720 par virginie le 090720</p>
                          <img src="{{ absolute_url(asset('../image/dispositif.jpg')) }}" alt="Symfony!" />
                     </div>
                     </div>
@@ -47,14 +47,6 @@
 
             </div>
             
-            {% for locale in locales %}
-    {% if locale != app.request.locale %}
-        <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
-    {% endif %}
-    
-{% endfor %}
-
-
 {% endblock %}
 
 

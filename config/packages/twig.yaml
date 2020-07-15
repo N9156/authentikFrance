@@ -4,12 +4,3 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: null
     form_themes: ['bootstrap_4_layout.html.twig']
-
-    # # On déclare ci-dessous le nom de la variable globale
-    # globals:
-    #     locales: '%app.locales%'
-
-    
-    # On déclare ci-dessous le nom de la variable globale
-    globals:
-        locales: '%app.locales%'

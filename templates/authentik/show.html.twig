@@ -11,47 +11,61 @@
         </div>
 
         <div class="card-body">
-            <img src="{{ site.image|replace({"200": "640/480"}) }}" class="card-img-top rounded-pill" alt="{{ site.title }}">
+            <img src="{{ site.image|replace({"200": "640/480"}) }}" class="card-img-top rounded-pill" style=" width: 45rem; margin-left: 16%;"  alt="{{ site.title }}">
                 
             <h4 class="text-center font-italic">{{ site.content|raw }}</h4>
             <hr>
             <p class="text-righ">{{ site.adress }}</p>
             <hr>
             <p class="text-righ">{{ site.contactProfessionnel }}</p>
-            <p class="text-righ">{{ site.phone }}</p>
+            <p class="text-righ">{{ site.phone }}</p>git
             <p class="text-righ">{{ site.mail }}</p>
             <p class="text-righ ">{{ site.url }}</p>  
         </div>
 
-        <div class="card-footer">
-            <a href=""><button type="button" class="btn btn-outline-info float-right"><i class="far fa-comments">Faire de commentaire</i></button></a>
+    </div>
+
+    <div>
+
+<div class="card border-info mb-3">
+ {# {% if app.user %} VISIBLE SI EST CONNECTé #} 
+    <div class="card-header"><h4>Quel est votre commentaire?</h4></div>
+        
+    {# New commentaire #}
+
+        {% for message in app.flashes('success') %}
+
+        <div class="col-md-5 mx-auto alert alert-success text-center">
+            {{ message }}
         </div>
+
+        {% endfor %}
+
+    <div class="card-body">
+
+        {{ form_start(formComment, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
+
+        {{ form_row(formComment.author, { 'label': 'Votre prénom','attr': { 'placeholder': "Mme / M ..." } }) }}
+
+        {{ form_row(formComment.content, { 'label': 'Votre commentaire','attr': { 'placeholder': "Excellent rapport qualité / prix... service impeccable...","rows": 7 } }) }}
+            
+            <button type="submit" class="btn btn-info"><i class="far fa-comments">Envoyez votre commentaire</i></button>
+
+        {{ form_end(formComment) }}
+
+    <p class="text-danger" style="font-size: 14px"><i class="fas fa-exclamation-circle">Les commentaires inappropriés (racistes, agressifs, homophobes...) seront supprimés</i></p>
 
     </div>
 
+{# {% endif %} #}
 
-    <h3>Quel est votre commentaire ? ({{ article.commentaires|length }})</h3>
-       
-    {% for commentaire in article.commentaires %}
-            <p> Publié par {{commentaire.pseudo }}</p>
-             <div>{{ commentaire.contenu }}</div>
+</div>
 
-        {% else %}
-        <p>Il n'y a pas encore de commentaire</p>
-        {% endfor %}
+{# Liste des articles #}
 
+      <h5 class="mx-auto m3">{{ site.comments|length }} Commentaires</h5>
 
-        <h3>{% trans %}What is your comments{% endtrans %} ({{ article.commentaires|length }})</h3>
-        
-        {% for commentaire in article.commentaires %}
-            <p>{% trans %}Published by{% endtrans %} {{commentaire.pseudo }}</p>
-            <div>{{ commentaire.contenu }}</div>
-        
-            {% else %}
-            <p>{% trans %}There's no comment yet{% endtrans %}</p>
-        {% endfor %}
-
-
+        {% for comits in site.comments %}
 
                 <div class="row border rounded mb-2 bg-info text-white">
                     <div class="col-md-4">
@@ -63,12 +77,8 @@
                     </div>
                 </div>
 
-       
+        {% endfor %}
 
-    {% for locale in locales %}
-            {% if locale != app.request.locale %}
-            <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
-            {% endif %}
-    {% endfor %}
-    
+
+
 {% endblock %}

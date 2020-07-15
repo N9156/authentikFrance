@@ -1,17 +1,6 @@
 <!DOCTYPE html>
-
-<html lang="{{ app.request.locale }}">
-
-                {% for locale in locales %}
-        
-            {% if locale != app.request.locale %}
-    <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
-
-            {% endif %}
-            
-            {% endfor %}
-    
-<head>
+<html>
+    <head>
 
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
              <title>Bienvenue en Bretagne !</title>
@@ -19,77 +8,85 @@
 
         {% block stylesheets %}
             
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
                
     
             <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <![endif]-->
-       
-        
+            <![endif]-->
+
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="icon" type="image.png" href"image/LOGO_projetco.PNG">
                         
             <!-- Fav and touch icons -->
     
         {% endblock %}
-    </head>
-    <body>
-        <header>    
-            <!-- PETITE NAVBAR -->
-            <!-- As a heading -->
 
+   
+         
     <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1"><strong>Destination Région Bretagne 🐟</strong></span>
             <div class="topnav" id="myTopnav">
 
                 <a href="{{ path('authentik') }}" class="active">Liste des sites touristiques /</a>
-                <strong><a href="#news">Création d'un utilisateur /</a></strong>
-                <strong> <a href="#about">Connexion /</a></strong>
-                    <strong><a href="#about">Déconnexion</a></strong>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                {# SI l'insternaute N'EST PAS connecté, on lui propose les liens 'Créer votre compte' et 'Identifiez-vous' #}
+                {% if not  app.user %}
+                <strong><a href="{{ path('authentik_create') }}">Création d'un utilisateur /</a></strong>
+                <strong> <a href="{{ path('authentik_login') }}">Connexion /</a></strong>
+                {% endif %}
+
+                {# Si l'utilisateur a un ROLE_ADMIN en BDD , on met dans le if donne acces au back office à l'administrateur #}
+
+                {# {% if is_granted('ROLE_ADMIN') %} #}
+                <strong><a href="{{ path('admin') }}">BackOffice /</a></strong>
+                {# {% endif %} #}
+
+                {# {% if is_granted('ROLE_PRO') %} #}
+                <strong><a href="{{ path('user') }}">Gestion de mes Sites Touristiques /</a></strong>
+                {# {% endif %} #}
+
+                {% if app.user %}
+                <strong><a href="{{ path('authentik_logout') }}">Déconnexion</a></strong>
+                {% endif %}
+                
+                {# <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                   <i class="fa fa-bars"></i>
-                </a>
+                </a> #}
+
               </div>
-            
-    </nav>
 
-
+   
+                     
+         </nav>
             <!-- End main navigation -->
-      
-        
-
-</header>
-
+        </head>      
 
         <div class="container mon-conteneur">
         {% block body %}
 
-        {% for locale in locales %}
-        {% if locale != app.request.locale %}
-            <a href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
-        {% endif %}
-    {% endfor %}
-
         {% endblock %}
-
         </div>
         
 
-        <footer class="bg-secondary text-white text-align py-8">
+<footer class="bg-secondary text-white text-align py-8">
 
-            <p> &copy; 2020 - Soutenance WB3 - Groupe 2 - La Super TEAM !!! (｡◕‿◕｡) </p> 
-            <p>EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
+
+            <p> &copy; 2020 - Soutenance WB3 - Groupe 2 - La Super TEAM !!! (｡◕‿◕｡) </
+            <p>...EmojiBZH - signez la pétition ! https://www.emoji.bzh/petition-soutien-emoji/</p>
+            
             <div id="sfc3erf3jcxtrxbcxc4dw1j1rrx5t78wuap"></div>
             
            
 
-        </footer>
 
+    <div id="sfc3erf3jcxtrxbcxc4dw1j1rrx5t78wuap">
+    
+    </div>
+            
+
+</footer>
 
         {% block javascripts %}
   

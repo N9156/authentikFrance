@@ -10,9 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * 
  */
 class User implements UserInterface
 {
@@ -54,20 +54,18 @@ class User implements UserInterface
     private $town;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=10)
      */
     private $postcode;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(
-     *          message = "Cette adresse Email '{{ value }}' n'est pas valide."
-     * )
+     *
      */
     private $mail;
 
@@ -76,14 +74,12 @@ class User implements UserInterface
      */
     private $nationality;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
 
+
+    
     /**
      * @ORM\Column(type="string", length=255)
-     * * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
+     * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
      * @Assert\EqualTo(propertyPath="confirm_password", message="Les mots de passe ne correspondent pas")
      */
     private $password;
@@ -95,7 +91,6 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="users", orphanRemoval=true)
-     * 
      */
     private $comments;
 
@@ -103,6 +98,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=SiteTouristique::class, mappedBy="user")
      */
     private $sitestouristiques;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
   
     
@@ -241,14 +241,10 @@ class User implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+        //retourne les roles de la bdd
     }
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
+    
 
     public function getPassword(): ?string
     {
@@ -261,6 +257,7 @@ class User implements UserInterface
 
         return $this;
     }
+
     public function getSalt()
     {
         
@@ -269,7 +266,7 @@ class User implements UserInterface
     {
         
     }
-    
+
 
     /**
      * @return Collection|Comment[]
@@ -337,6 +334,13 @@ class User implements UserInterface
     {
         return $this->username;
     }*/
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;   
+    }
 
    
 }
