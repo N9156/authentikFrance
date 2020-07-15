@@ -76,11 +76,7 @@ class User implements UserInterface
 
 
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
+    
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
@@ -107,6 +103,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=SiteTouristique::class, mappedBy="user")
      */
     private $sitestouristiques;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
   
     
@@ -248,13 +249,7 @@ class User implements UserInterface
         //retourne les roles de la bdd
     }
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-        //renvoie un tableau
-    }
+    
 
     public function getPassword(): ?string
     {
@@ -344,6 +339,13 @@ class User implements UserInterface
     {
         return $this->username;
     }*/
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;   
+    }
 
    
 }

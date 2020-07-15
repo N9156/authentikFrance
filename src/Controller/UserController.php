@@ -23,16 +23,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
 
-   /**
-     * @Route("/user", name="user")
-     */
-    public function user()
-    {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController'
-        ]);
-    }
-
 
 
 // CONTROLLER SITES TOURISTIQUES
