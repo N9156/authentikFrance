@@ -12,7 +12,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * 
+ * @UniqueEntity(
+ * fields = {"mail"},
+ * message="Un compte est déjà existant à cette adresse Email !!"
+ * )
  */
 class User implements UserInterface
 {
@@ -65,7 +68,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
+     * @Assert\Email(message="Veuillez renseigner un email valide")
      */
     private $mail;
 
@@ -74,9 +77,11 @@ class User implements UserInterface
      */
     private $nationality;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = ["ROLE_USER"];
 
-
-    
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min="8",minMessage="Vootre mot de passe doit contenir 8 caractères minimum")
@@ -99,10 +104,10 @@ class User implements UserInterface
      */
     private $sitestouristiques;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+//     /**
+//      * @ORM\Column(type="json")
+//      */
+//     private $roles = [];
 
   
     
@@ -240,6 +245,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
+        //return ['ROLE_USER'];
         return $this->roles;
         //retourne les roles de la bdd
     }
@@ -262,11 +268,11 @@ class User implements UserInterface
     {
         
     }
+
     public function eraseCredentials()
     {
         
     }
-
 
     /**
      * @return Collection|Comment[]
@@ -333,14 +339,7 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->username;
-    }*/
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+    }*/    
 
-        return $this;   
-    }
-
-   
 }

@@ -113,12 +113,15 @@ class AuthentikController extends AbstractController
     {
         dump($request);
         //if(!$user){
-        $user=new User;
+        $user = new User;
         //}//fin if
         //dump($request);
-        $form=$this->createForm(UserType::class,$user);
+        $form = $this->createForm(UserType::class, $user);
         //dump($request);
         $form->handleRequest($request);
+
+        dump($user);
+
         if($form->isSubmitted() && $form->isValid())
         {
             /*foreach($roles as $cle=>$value){$roles[$cle];}*/
@@ -132,6 +135,8 @@ class AuthentikController extends AbstractController
 
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+
+            dump($user);
             
            $manager->persist($user);
            $manager->flush();
@@ -156,6 +161,8 @@ class AuthentikController extends AbstractController
 
         //permet de récuperer le dernier username (email) que l'internaute a saisie dans le formulaire de connexion en cas d'erreur de connexion
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        dump($lastUsername);
 
         return $this->render('authentik/login.html.twig',[
                 'last_username' => $lastUsername, //on envoie le message d'erreur et le dernier email saisie sur le template
@@ -182,6 +189,7 @@ class AuthentikController extends AbstractController
     */
     public function show(SiteTouristiqueRepository $repo, $id, Request $request, EntityManagerInterface $manager)
     {
+
         $site = $repo->find($id);
     
         dump($site);

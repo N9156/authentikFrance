@@ -26,18 +26,22 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('mail')
             ->add('nationality')
+
+            // ->add('roles', CollectionType::class,[
+            //     'entry_type'=> ChoiceType::class,
+            //     'entry_options'=> [
+            //         'choices_as_value'=>'ROLE_USER',//coché par default
+            //         'choices'=> [
+            //             'Touriste'=>'ROLE_USER',
+            //             'Professionnel'=>'ROLE_PRO'
+            //         ],
+            //         'expanded'=>true,//boutons
+            //         'multiple'  => true,
+            //         'label' => 'Rôle',
+            //     ],
+            // ])
             ->add('password', PasswordType::class)
             ->add('confirm_password',PasswordType::class)
-            ->add('roles', CollectionType::class, [
-                'label_format' => 'ADMIN / USER',
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'choices'  => [
-                        'Utilisateur' => 'ROLE_USER',
-                        'Administrateur'     => 'ROLE_ADMIN'
-                    ],
-                ],
-            ])
         ;
     }
 
@@ -45,6 +49,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            //'validation_groups' => ['registration'],
         ]);
     }
 }

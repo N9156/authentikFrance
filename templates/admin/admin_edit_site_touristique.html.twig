@@ -6,16 +6,15 @@
 
 {% block body %}
 
-
-    <h1 class="display-4 text-center my-4">
-
+    
+    <h2 class="text-center my-4">
     {% if editMode %}
         BACKOFFICE | Modification du Site Touristique <a href="{{ path('admin_sites_touristiques') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% else %}
         BACKOFFICE | Poster un nouveau Site Touristique <a href="{{ path('admin_sites_touristiques') }}" class="btn btn-info btn-sm"><i class="fas fa-reply"> Liste des Sites Touristiques</i></a>
     {% endif %}
-
-    </h1>
+    </h2>
+    <hr>
 
 
     {{ form_start(formSite, {'attr': {'class': 'col-md-7 mx-auto'} }) }}
