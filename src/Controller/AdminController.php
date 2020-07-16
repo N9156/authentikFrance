@@ -3,6 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+
+use App\Entity\Contact;
+use App\Entity\SiteTouristique;
+use App\Form\SiteTouristiqueType;
+use App\Repository\CommentRepository;
+use App\Repository\ContactRepository;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Entity\SiteTouristique;
@@ -219,6 +225,26 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_comments');
     }
 
+    /**
+     * @Route("/admin/admin_contacts", name="admin_contacts")
+     */
+    public function adminContacts(ContactRepository $repo)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $colonnes = $em->getClassMetadata(Contact::class)->getFieldNames();
+        $contacts = $repo->findAll();
+        dump($contacts);
+        dump($colonnes);
+        return $this->render('admin/admin_contacts.html.twig', [
+            'contacts' => $contacts,
+            'colonnes' => $colonnes
+        ]);
+    }//fin adminContacts methode qui retourne les contacts
+    }//fin class AdminController
+
+
+
 
 }
+
 

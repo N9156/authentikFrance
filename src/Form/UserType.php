@@ -26,6 +26,7 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('mail')
             ->add('nationality')
+
             // ->add('roles', CollectionType::class,[
             //     'entry_type'=> ChoiceType::class,
             //     'entry_options'=> [

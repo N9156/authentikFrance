@@ -104,6 +104,11 @@ class User implements UserInterface
      */
     private $sitestouristiques;
 
+//     /**
+//      * @ORM\Column(type="json")
+//      */
+//     private $roles = [];
+
   
     
 
@@ -245,13 +250,7 @@ class User implements UserInterface
         //retourne les roles de la bdd
     }
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-        //renvoie un tableau
-    }
+    
 
     public function getPassword(): ?string
     {
@@ -340,5 +339,7 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->username;
-    }*/ 
+
+    }*/    
+
 }

@@ -35,7 +35,7 @@ security:
     # on indique à symfony que les utilisateurs ayant un ROLE_ADMIN, donc les administrateurs du site ont aussi un ROLE_USER, ils ont
     # acces à l'ensemble du site BACK + FRONT
     role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+        ROLE_ADMIN: ROLE_USER, ROLE_PRO
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
