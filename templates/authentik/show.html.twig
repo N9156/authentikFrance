@@ -28,7 +28,8 @@
     <div>
 
 <div class="card border-info mb-3">
- {# {% if app.user %} VISIBLE SI EST CONNECTé #} 
+
+{% if app.user %} 
     <div class="card-header"><h4>Quel est votre commentaire?</h4></div>
         
     {# New commentaire #}
@@ -57,7 +58,7 @@
 
     </div>
 
-{# {% endif %} #}
+{% endif %}
 
 </div>
 

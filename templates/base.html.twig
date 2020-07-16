@@ -39,13 +39,13 @@
 
                 {# Si l'utilisateur a un ROLE_ADMIN en BDD , on met dans le if donne acces au back office à l'administrateur #}
 
-                {# {% if is_granted('ROLE_ADMIN') %} #}
+                {% if is_granted('ROLE_ADMIN') %}
                 <strong><a href="{{ path('admin') }}">BackOffice /</a></strong>
-                {# {% endif %} #}
+                {% endif %}
 
-                {# {% if is_granted('ROLE_PRO') %} #}
+                {% if is_granted('ROLE_PRO') %}
                 <strong><a href="{{ path('user') }}">Gestion de mes Sites Touristiques /</a></strong>
-                {# {% endif %} #}
+                {% endif %}
 
                 {% if app.user %}
                 <strong><a href="{{ path('authentik_logout') }}">Déconnexion</a></strong>
