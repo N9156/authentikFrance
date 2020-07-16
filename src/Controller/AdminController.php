@@ -243,7 +243,7 @@ class AdminController extends AbstractController
             'contacts' => $contacts,
             'colonnes' => $colonnes
         ]);
-    }//fin adminContacts methode qui retourne les contact
+    }//fin adminContacts methode qui retourne les contacts
 
 
     /**
@@ -251,6 +251,10 @@ class AdminController extends AbstractController
      */
     public function admin_contact_emails(ContactRepository $repo)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $colonnes = $em->getClassMetadata(Contact::class)->getFieldNames();
+
         $contacts = $repo->findAll();
 
         dump($contacts);
