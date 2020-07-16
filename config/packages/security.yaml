@@ -1,8 +1,8 @@
 security:
     # declaration de l'encodeur, on précise à symfony que nous allons encoder un parametre dans la classe/Entity User (password)
     # on precise le type d'encodage(bcrypt)
-    encoders:
-        App\Entity\User:
+    encoders: 
+        App\Entity\User: 
             algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -12,7 +12,8 @@ security:
         in_database:
             entity:
                 class: App\Entity\User
-                property: email
+                property: mail
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -48,7 +49,8 @@ security:
     # on indique aussi à symfony que les utilisateurs qui se connectent au blog ont un ROLR_USER en BDD
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/profile, roles: [ROLE_USER , ROLE_PRO] }
+        #  - { path: ^/profile, roles: [ROLE_USER , ROLE_PRO] }
+         - { path: ^/login, roles: [ROLE_USER, ROLE_PRO] }
     
-    # 
+    
     access_denied_url: /authentik

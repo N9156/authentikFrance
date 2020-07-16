@@ -1,27 +1,18 @@
 {% extends 'base.html.twig' %}
 
-
-
-
 {% block body %}
 
     <h1>Creation votre compte Visiteur ou Professionnel</h1>
-
-
-
+    {% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+    
   {{ form_start(formUser, {'attr':{'class':'col-md-7 mx-auto'}}) }}
 
+        {# {{ form_row(formUser.roles, {'label': "Rôle utilisateur" }) }}
 
-
-  
-        {{ form_row(formUser.roles, {'label': "Rôle utilisateur" }) }}
-        
         <input type="radio" id="ROLE_USER" name="roles" value="ROLE_USER" checked>
         <label for="ROLE_USER"> Touriste</label><br>
         <input type="radio" id="ROLE_PRO" name="roles" value="ROLE_PRO">
-        <label for="ROLE_PRO">Professionnel </label><br> 
-
-        
+        <label for="ROLE_PRO">Professionnel </label><br> #}
         {{ form_row(formUser.username ,{'label': "Nom d'utilisateur",'attr':{'placeholder':"Saisir votre nom"}}) }}
         {{ form_row(formUser.userlastname ,{'label': "Prénom",'attr':{'placeholder':"Saisir votre prénom"}}) }}
         {{ form_row(formUser.age, {'label': "Age",'attr':{'placeholder':"Quel age avez-vous"}}) }}
@@ -34,14 +25,9 @@
         {{ form_row(formUser.nationality, {'label': "Nationalité",'attr':{'placeholder':"Votre nationalité"}}) }}
         {{ form_row(formUser.password,{'label': "Mot de passe",'attr':{'placeholder':"Saisissez un mot de passe "}}) }}
         {{ form_row(formUser.confirm_password,{'label': "Confirmez votre mot de passe",'attr':{'placeholder':"Confirmez le mot de passe "}}) }}
-        
-
-       <!-- <select name="roles">
-         <option value="ROLE_USER">Utilisateur</option>
-         <option value="ROLE_PRO">Pro</option>
-       </select> -->
 
         <button type="submit" class="btn btn-info">Validez votre compte</button>
+
   {{ form_end(formUser) }}
 
 
