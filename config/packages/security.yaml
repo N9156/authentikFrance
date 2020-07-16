@@ -49,7 +49,6 @@ security:
     # on indique aussi à symfony que les utilisateurs qui se connectent au blog ont un ROLR_USER en BDD
     access_control:
 
- 
          - { path: ^/admin, roles: ROLE_ADMIN }
         #  - { path: ^/profile, roles: [ROLE_USER , ROLE_PRO] }
          - { path: ^/login, roles: [ROLE_USER, ROLE_PRO] }
