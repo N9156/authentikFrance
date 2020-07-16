@@ -33,8 +33,6 @@ class UserController extends AbstractController
         ]);
     }
 
-
-
 // CONTROLLER SITES TOURISTIQUES
      /**
       * @Route("/user", name="user")
@@ -78,7 +76,6 @@ class UserController extends AbstractController
 
         $formSite= $this->createForm(SiteTouristiqueType::class, $site);
 
-
         $formSite->handleRequest($request);
 
         if($formSite->isSubmitted() && $formSite->isValid()) 
@@ -114,7 +111,5 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user');
     }
-
-    
-    
+   
 }//fin class
