@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Hello ContactMailController !{% endblock %}
+
+{% block body %}
+
+
+    <h1 class="display-4 text-center my-4"> Liste des contacts Emails</h1>
+
+    <table class="table table-bordered text-center">
+            
+    
+            <tr>
+            {# on boucle sur les colonnes récupérer en BDD et renvoyé par le controller AdminContactMailController}
+            {# 'colonnes' -> variables contenant le nom des colonnes de table 'Contact' qui provient du Controller}
+            {# 'data' réceptionne une colonne par tour de boucle FOR #}
+
+                                     
+
+        {% for data in colonnes %}
+
+                {% if data != 'id' %}
+
+                        <th>{{ data}}</th>
+
+                {% endif %}
+
+        {% endfor %}
+
+        {% for data in contacts %}     
+        {# on doit mettre les colonnes dans l'ordre de la bdd car on a fait boucle FOR #}
+           
+            </tr>
+                <td>{{ data.firstname}}</td>
+                <td>{{ data.lastname|raw }}</td>
+                <td>{{ data.phone }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.message|raw }}</td>
+                
+                {# <td>{{ data.createAt|date("d/m/Y à H/i:s") }}</td> / pas la car pas de date ds la bdd #} 
+                {# <td>{{ data.category.title }}</td>  / pas la car pas de catégorie dans la bdd #}
+                
+                <td><a href="{{ path('contact_emails', {'id': data.id} ) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td> 
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% endblock %}
